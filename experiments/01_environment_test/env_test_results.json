@@ -1,0 +1,94 @@
+{
+  "walk_imitation": {
+    "env_name": "walk_imitation",
+    "action_shape": [
+      59
+    ],
+    "action_range": [
+      -3.0,
+      3.0
+    ],
+    "total_obs_dim": 741,
+    "num_obs_keys": 12,
+    "sample_obs_keys": [
+      "walker/accelerometer",
+      "walker/actuator_activation",
+      "walker/appendages_pos",
+      "walker/force",
+      "walker/gyro",
+      "walker/joints_pos",
+      "walker/joints_vel",
+      "walker/touch",
+      "walker/velocimeter",
+      "walker/world_zaxis"
+    ],
+    "physics_dt": 0.0002,
+    "control_dt": 0.002,
+    "control_freq_hz": 500.0,
+    "rollout_steps": 50,
+    "rollout_fps": 37.07582242869874,
+    "mean_reward": 1.0,
+    "status": "PASS"
+  },
+  "flight_imitation": {
+    "env_name": "flight_imitation",
+    "action_shape": [
+      12
+    ],
+    "action_range": [
+      -3.0,
+      3.0
+    ],
+    "total_obs_dim": 104,
+    "num_obs_keys": 9,
+    "sample_obs_keys": [
+      "walker/accelerometer",
+      "walker/actuator_activation",
+      "walker/gyro",
+      "walker/joints_pos",
+      "walker/joints_vel",
+      "walker/velocimeter",
+      "walker/world_zaxis",
+      "walker/ref_displacement",
+      "walker/ref_root_quat"
+    ],
+    "physics_dt": 5e-05,
+    "control_dt": 0.0002,
+    "control_freq_hz": 5000.0,
+    "rollout_steps": 50,
+    "rollout_fps": 149.78886800107423,
+    "mean_reward": 0.8814300061890009,
+    "status": "PASS"
+  },
+  "vision_guided_flight": {
+    "env_name": "vision_guided_flight",
+    "action_shape": [
+      12
+    ],
+    "action_range": [
+      -3.0,
+      3.0
+    ],
+    "total_obs_dim": 6208,
+    "num_obs_keys": 10,
+    "sample_obs_keys": [
+      "walker/accelerometer",
+      "walker/actuator_activation",
+      "walker/gyro",
+      "walker/joints_pos",
+      "walker/joints_vel",
+      "walker/left_eye",
+      "walker/right_eye",
+      "walker/velocimeter",
+      "walker/world_zaxis",
+      "walker/task_input"
+    ],
+    "physics_dt": 5e-05,
+    "control_dt": 0.0002,
+    "control_freq_hz": 5000.0,
+    "rollout_steps": 50,
+    "rollout_fps": 65.33452465958102,
+    "mean_reward": 0.007389736123489246,
+    "status": "PASS"
+  }
+}

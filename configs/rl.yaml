@@ -1,0 +1,29 @@
+# Configuration for Reinforcement Learning (Phase 8) — Flight Stabilization
+experiment:
+  name: "exp_001_flight_stabilization"
+  seed: 42
+  checkpoint_dir: "checkpoints/rl/exp_001/"
+  results_dir: "results/rl/exp_001/"
+
+environment:
+  target_pos: [0.0, 0.0, 1.0]  # x, y, z in cm
+  target_vel: [0.0, 0.0, 0.0]  # vx, vy, vz in cm/s
+  max_steps: 300
+  action_scale: 3.0
+  reward_weights:
+    alive: 1.0
+    pos: 0.5
+    vel: 0.1
+    orient: 0.2
+    effort: 0.01
+
+algorithm:
+  name: "ppo"
+  total_timesteps: 50000
+  learning_rate: 0.0003
+  gamma: 0.99
+  clip_range: 0.2
+  batch_size: 64
+  n_epochs: 4
+  actor_dims: [128, 128]
+  critic_dims: [128, 128]

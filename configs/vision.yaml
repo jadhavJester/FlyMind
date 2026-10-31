@@ -1,0 +1,14 @@
+# Configuration for Vision-Guided Flight (Phase 9)
+experiment:
+  name: "exp_001_vision_guided_flight"
+  seed: 42
+  results_dir: "results/vision/exp_001/"
+
+environment:
+  image_shape: [64, 64, 3]
+  max_steps: 300
+  action_scale: 3.0
+
+evaluation:
+  num_episodes: 10
+  low_level_checkpoint: "checkpoints/imitation/exp_001/best_model.pt"

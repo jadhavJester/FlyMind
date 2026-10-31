@@ -1,0 +1,52 @@
+{
+  "milestone": "Milestone 3 \u2014 Drosophila Arithmetic Selector v0.1",
+  "task": {
+    "task_id": "m3_arithmetic_2_plus_3_v01",
+    "operand_a": 2,
+    "operand_b": 3,
+    "operator": "+",
+    "candidates": [
+      5,
+      7
+    ],
+    "correct_answer": 5,
+    "candidate_target_mapping": {
+      "target_left": 5,
+      "target_right": 7
+    },
+    "correct_target_id": "target_left",
+    "prompt_str": "2 + 3 = ?"
+  },
+  "baselines": {
+    "Baseline A (Oracle)": {
+      "selected_target": "target_left",
+      "selected_value": 5,
+      "success": true,
+      "cumulative_reward": 8.179999999999998,
+      "steps": 183,
+      "min_dist_correct_cm": 0.1495113808784754,
+      "min_dist_wrong_cm": 0.44170189487257183,
+      "termination_reason": "CORRECT_TARGET_CONTACT"
+    },
+    "Baseline B (Wrong Target)": {
+      "selected_target": "target_right",
+      "selected_value": 7,
+      "success": false,
+      "cumulative_reward": -11.810000000000002,
+      "steps": 182,
+      "min_dist_correct_cm": 0.5645302030279562,
+      "min_dist_wrong_cm": 0.14927086248181098,
+      "termination_reason": "WRONG_TARGET_CONTACT"
+    },
+    "Baseline C (Arithmetic Solver)": {
+      "selected_target": "target_left",
+      "selected_value": 5,
+      "success": true,
+      "cumulative_reward": 8.11,
+      "steps": 190,
+      "min_dist_correct_cm": 0.14973189615523666,
+      "min_dist_wrong_cm": 0.4886851631969911,
+      "termination_reason": "CORRECT_TARGET_CONTACT"
+    }
+  }
+}

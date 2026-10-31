@@ -1,0 +1,12 @@
+numpy==1.26.4
+dm_control>=1.0.14
+h5py>=3.10.0
+pytest>=8.0.0
+mediapy>=1.2.0
+matplotlib>=3.8.0
+pyyaml>=6.0
+imageio>=2.34.0
+imageio-ffmpeg>=0.5.0
+pillow>=10.0.0
+torch>=2.0.0
+-e ./upstream/flybody

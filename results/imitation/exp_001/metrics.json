@@ -1,0 +1,9 @@
+{
+  "experiment_name": "exp_001_mlp_baseline",
+  "epochs": 25,
+  "best_epoch": 12,
+  "best_val_loss": 0.002551236721583484,
+  "test_loss": 0.0018686786176537863,
+  "training_time_s": 112.18520331382751,
+  "device": "cpu"
+}

@@ -1,0 +1,30 @@
+{
+  "baseline_no_wind": {
+    "conventional_pid": {
+      "pos_rmse_cm": 69.40986514091492,
+      "pos_mae_cm": 65.65265655517578,
+      "control_effort": 1.686008334159851,
+      "max_roll_deg": 21.079364776611328
+    },
+    "bio_inspired_transfer": {
+      "pos_rmse_cm": 69.06620860099792,
+      "pos_mae_cm": 65.12502431869507,
+      "control_effort": 1.7708269357681274,
+      "max_roll_deg": 30.279930114746094
+    }
+  },
+  "wind_gust_disturbance": {
+    "conventional_pid": {
+      "pos_rmse_cm": 69.39161419868469,
+      "pos_mae_cm": 65.63023924827576,
+      "control_effort": 1.6838486194610596,
+      "max_roll_deg": 21.212018966674805
+    },
+    "bio_inspired_transfer": {
+      "pos_rmse_cm": 68.89593005180359,
+      "pos_mae_cm": 65.00481963157654,
+      "control_effort": 1.7696382999420166,
+      "max_roll_deg": 30.503175735473633
+    }
+  }
+}

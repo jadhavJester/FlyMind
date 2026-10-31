@@ -1,0 +1,4091 @@
+{
+  "flight_model": {
+    "env_name": "flight_imitation",
+    "n_bodies": 135,
+    "n_joints": 38,
+    "n_dof": 48,
+    "n_qpos": 50,
+    "n_actuators": 11,
+    "n_sensors": 18,
+    "physics_timestep_s": 5e-05,
+    "physics_freq_hz": 20000.0,
+    "control_timestep_s": 0.0002,
+    "control_freq_hz": 5000.0,
+    "action_dimension": 12,
+    "total_obs_dimension": 104,
+    "observables": {
+      "walker/accelerometer": [
+        3
+      ],
+      "walker/actuator_activation": [
+        0
+      ],
+      "walker/gyro": [
+        3
+      ],
+      "walker/joints_pos": [
+        25
+      ],
+      "walker/joints_vel": [
+        25
+      ],
+      "walker/velocimeter": [
+        3
+      ],
+      "walker/world_zaxis": [
+        3
+      ],
+      "walker/ref_displacement": [
+        6,
+        3
+      ],
+      "walker/ref_root_quat": [
+        6,
+        4
+      ]
+    },
+    "body_names": [
+      "world",
+      "walker/",
+      "walker/thorax",
+      "walker/head",
+      "walker/rostrum",
+      "walker/haustellum",
+      "walker/labrum_left",
+      "walker/labrum_right",
+      "walker/antenna_left",
+      "walker/antenna_right",
+      "walker/wing_left",
+      "walker/wing_right",
+      "walker/abdomen",
+      "walker/abdomen_2",
+      "walker/abdomen_3",
+      "walker/abdomen_4",
+      "walker/abdomen_5",
+      "walker/abdomen_6",
+      "walker/abdomen_7",
+      "walker/haltere_left",
+      "walker/haltere_right",
+      "walker/coxa_T1_left",
+      "walker/femur_T1_left",
+      "walker/tibia_T1_left",
+      "walker/tarsus_T1_left",
+      "walker/tarsus2_T1_left",
+      "walker/tarsus3_T1_left",
+      "walker/tarsus4_T1_left",
+      "walker/claw_T1_left",
+      "walker/coxa_T1_right",
+      "walker/femur_T1_right",
+      "walker/tibia_T1_right",
+      "walker/tarsus_T1_right",
+      "walker/tarsus2_T1_right",
+      "walker/tarsus3_T1_right",
+      "walker/tarsus4_T1_right",
+      "walker/claw_T1_right",
+      "walker/coxa_T2_left",
+      "walker/femur_T2_left",
+      "walker/tibia_T2_left",
+      "walker/tarsus_T2_left",
+      "walker/tarsus2_T2_left",
+      "walker/tarsus3_T2_left",
+      "walker/tarsus4_T2_left",
+      "walker/claw_T2_left",
+      "walker/coxa_T2_right",
+      "walker/femur_T2_right",
+      "walker/tibia_T2_right",
+      "walker/tarsus_T2_right",
+      "walker/tarsus2_T2_right",
+      "walker/tarsus3_T2_right",
+      "walker/tarsus4_T2_right",
+      "walker/claw_T2_right",
+      "walker/coxa_T3_left",
+      "walker/femur_T3_left",
+      "walker/tibia_T3_left",
+      "walker/tarsus_T3_left",
+      "walker/tarsus2_T3_left",
+      "walker/tarsus3_T3_left",
+      "walker/tarsus4_T3_left",
+      "walker/claw_T3_left",
+      "walker/coxa_T3_right",
+      "walker/femur_T3_right",
+      "walker/tibia_T3_right",
+      "walker/tarsus_T3_right",
+      "walker/tarsus2_T3_right",
+      "walker/tarsus3_T3_right",
+      "walker/tarsus4_T3_right",
+      "walker/claw_T3_right",
+      "ghost/",
+      "ghost/thorax",
+      "ghost/head",
+      "ghost/rostrum",
+      "ghost/haustellum",
+      "ghost/labrum_left",
+      "ghost/labrum_right",
+      "ghost/antenna_left",
+      "ghost/antenna_right",
+      "ghost/abdomen",
+      "ghost/abdomen_2",
+      "ghost/abdomen_3",
+      "ghost/abdomen_4",
+      "ghost/abdomen_5",
+      "ghost/abdomen_6",
+      "ghost/abdomen_7",
+      "ghost/haltere_left",
+      "ghost/haltere_right",
+      "ghost/coxa_T1_left",
+      "ghost/femur_T1_left",
+      "ghost/tibia_T1_left",
+      "ghost/tarsus_T1_left",
+      "ghost/tarsus2_T1_left",
+      "ghost/tarsus3_T1_left",
+      "ghost/tarsus4_T1_left",
+      "ghost/claw_T1_left",
+      "ghost/coxa_T1_right",
+      "ghost/femur_T1_right",
+      "ghost/tibia_T1_right",
+      "ghost/tarsus_T1_right",
+      "ghost/tarsus2_T1_right",
+      "ghost/tarsus3_T1_right",
+      "ghost/tarsus4_T1_right",
+      "ghost/claw_T1_right",
+      "ghost/coxa_T2_left",
+      "ghost/femur_T2_left",
+      "ghost/tibia_T2_left",
+      "ghost/tarsus_T2_left",
+      "ghost/tarsus2_T2_left",
+      "ghost/tarsus3_T2_left",
+      "ghost/tarsus4_T2_left",
+      "ghost/claw_T2_left",
+      "ghost/coxa_T2_right",
+      "ghost/femur_T2_right",
+      "ghost/tibia_T2_right",
+      "ghost/tarsus_T2_right",
+      "ghost/tarsus2_T2_right",
+      "ghost/tarsus3_T2_right",
+      "ghost/tarsus4_T2_right",
+      "ghost/claw_T2_right",
+      "ghost/coxa_T3_left",
+      "ghost/femur_T3_left",
+      "ghost/tibia_T3_left",
+      "ghost/tarsus_T3_left",
+      "ghost/tarsus2_T3_left",
+      "ghost/tarsus3_T3_left",
+      "ghost/tarsus4_T3_left",
+      "ghost/claw_T3_left",
+      "ghost/coxa_T3_right",
+      "ghost/femur_T3_right",
+      "ghost/tibia_T3_right",
+      "ghost/tarsus_T3_right",
+      "ghost/tarsus2_T3_right",
+      "ghost/tarsus3_T3_right",
+      "ghost/tarsus4_T3_right",
+      "ghost/claw_T3_right"
+    ],
+    "hierarchy_tree": {
+      "name": "world",
+      "id": 0,
+      "children": [
+        {
+          "name": "walker/",
+          "id": 1,
+          "children": [
+            {
+              "name": "walker/thorax",
+              "id": 2,
+              "children": [
+                {
+                  "name": "walker/head",
+                  "id": 3,
+                  "children": [
+                    {
+                      "name": "walker/rostrum",
+                      "id": 4,
+                      "children": [
+                        {
+                          "name": "walker/haustellum",
+                          "id": 5,
+                          "children": [
+                            {
+                              "name": "walker/labrum_left",
+                              "id": 6,
+                              "children": []
+                            },
+                            {
+                              "name": "walker/labrum_right",
+                              "id": 7,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "walker/antenna_left",
+                      "id": 8,
+                      "children": []
+                    },
+                    {
+                      "name": "walker/antenna_right",
+                      "id": 9,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/wing_left",
+                  "id": 10,
+                  "children": []
+                },
+                {
+                  "name": "walker/wing_right",
+                  "id": 11,
+                  "children": []
+                },
+                {
+                  "name": "walker/abdomen",
+                  "id": 12,
+                  "children": [
+                    {
+                      "name": "walker/abdomen_2",
+                      "id": 13,
+                      "children": [
+                        {
+                          "name": "walker/abdomen_3",
+                          "id": 14,
+                          "children": [
+                            {
+                              "name": "walker/abdomen_4",
+                              "id": 15,
+                              "children": [
+                                {
+                                  "name": "walker/abdomen_5",
+                                  "id": 16,
+                                  "children": [
+                                    {
+                                      "name": "walker/abdomen_6",
+                                      "id": 17,
+                                      "children": [
+                                        {
+                                          "name": "walker/abdomen_7",
+                                          "id": 18,
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/haltere_left",
+                  "id": 19,
+                  "children": []
+                },
+                {
+                  "name": "walker/haltere_right",
+                  "id": 20,
+                  "children": []
+                },
+                {
+                  "name": "walker/coxa_T1_left",
+                  "id": 21,
+                  "children": [
+                    {
+                      "name": "walker/femur_T1_left",
+                      "id": 22,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T1_left",
+                          "id": 23,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T1_left",
+                              "id": 24,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T1_left",
+                                  "id": 25,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T1_left",
+                                      "id": 26,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T1_left",
+                                          "id": 27,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T1_left",
+                                              "id": 28,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T1_right",
+                  "id": 29,
+                  "children": [
+                    {
+                      "name": "walker/femur_T1_right",
+                      "id": 30,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T1_right",
+                          "id": 31,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T1_right",
+                              "id": 32,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T1_right",
+                                  "id": 33,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T1_right",
+                                      "id": 34,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T1_right",
+                                          "id": 35,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T1_right",
+                                              "id": 36,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T2_left",
+                  "id": 37,
+                  "children": [
+                    {
+                      "name": "walker/femur_T2_left",
+                      "id": 38,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T2_left",
+                          "id": 39,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T2_left",
+                              "id": 40,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T2_left",
+                                  "id": 41,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T2_left",
+                                      "id": 42,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T2_left",
+                                          "id": 43,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T2_left",
+                                              "id": 44,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T2_right",
+                  "id": 45,
+                  "children": [
+                    {
+                      "name": "walker/femur_T2_right",
+                      "id": 46,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T2_right",
+                          "id": 47,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T2_right",
+                              "id": 48,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T2_right",
+                                  "id": 49,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T2_right",
+                                      "id": 50,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T2_right",
+                                          "id": 51,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T2_right",
+                                              "id": 52,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T3_left",
+                  "id": 53,
+                  "children": [
+                    {
+                      "name": "walker/femur_T3_left",
+                      "id": 54,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T3_left",
+                          "id": 55,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T3_left",
+                              "id": 56,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T3_left",
+                                  "id": 57,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T3_left",
+                                      "id": 58,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T3_left",
+                                          "id": 59,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T3_left",
+                                              "id": 60,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T3_right",
+                  "id": 61,
+                  "children": [
+                    {
+                      "name": "walker/femur_T3_right",
+                      "id": 62,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T3_right",
+                          "id": 63,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T3_right",
+                              "id": 64,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T3_right",
+                                  "id": 65,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T3_right",
+                                      "id": 66,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T3_right",
+                                          "id": 67,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T3_right",
+                                              "id": 68,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ghost/",
+          "id": 69,
+          "children": [
+            {
+              "name": "ghost/thorax",
+              "id": 70,
+              "children": [
+                {
+                  "name": "ghost/head",
+                  "id": 71,
+                  "children": [
+                    {
+                      "name": "ghost/rostrum",
+                      "id": 72,
+                      "children": [
+                        {
+                          "name": "ghost/haustellum",
+                          "id": 73,
+                          "children": [
+                            {
+                              "name": "ghost/labrum_left",
+                              "id": 74,
+                              "children": []
+                            },
+                            {
+                              "name": "ghost/labrum_right",
+                              "id": 75,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ghost/antenna_left",
+                      "id": 76,
+                      "children": []
+                    },
+                    {
+                      "name": "ghost/antenna_right",
+                      "id": 77,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/abdomen",
+                  "id": 78,
+                  "children": [
+                    {
+                      "name": "ghost/abdomen_2",
+                      "id": 79,
+                      "children": [
+                        {
+                          "name": "ghost/abdomen_3",
+                          "id": 80,
+                          "children": [
+                            {
+                              "name": "ghost/abdomen_4",
+                              "id": 81,
+                              "children": [
+                                {
+                                  "name": "ghost/abdomen_5",
+                                  "id": 82,
+                                  "children": [
+                                    {
+                                      "name": "ghost/abdomen_6",
+                                      "id": 83,
+                                      "children": [
+                                        {
+                                          "name": "ghost/abdomen_7",
+                                          "id": 84,
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/haltere_left",
+                  "id": 85,
+                  "children": []
+                },
+                {
+                  "name": "ghost/haltere_right",
+                  "id": 86,
+                  "children": []
+                },
+                {
+                  "name": "ghost/coxa_T1_left",
+                  "id": 87,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T1_left",
+                      "id": 88,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T1_left",
+                          "id": 89,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T1_left",
+                              "id": 90,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T1_left",
+                                  "id": 91,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T1_left",
+                                      "id": 92,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T1_left",
+                                          "id": 93,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T1_left",
+                                              "id": 94,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T1_right",
+                  "id": 95,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T1_right",
+                      "id": 96,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T1_right",
+                          "id": 97,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T1_right",
+                              "id": 98,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T1_right",
+                                  "id": 99,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T1_right",
+                                      "id": 100,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T1_right",
+                                          "id": 101,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T1_right",
+                                              "id": 102,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T2_left",
+                  "id": 103,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T2_left",
+                      "id": 104,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T2_left",
+                          "id": 105,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T2_left",
+                              "id": 106,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T2_left",
+                                  "id": 107,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T2_left",
+                                      "id": 108,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T2_left",
+                                          "id": 109,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T2_left",
+                                              "id": 110,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T2_right",
+                  "id": 111,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T2_right",
+                      "id": 112,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T2_right",
+                          "id": 113,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T2_right",
+                              "id": 114,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T2_right",
+                                  "id": 115,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T2_right",
+                                      "id": 116,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T2_right",
+                                          "id": 117,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T2_right",
+                                              "id": 118,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T3_left",
+                  "id": 119,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T3_left",
+                      "id": 120,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T3_left",
+                          "id": 121,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T3_left",
+                              "id": 122,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T3_left",
+                                  "id": 123,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T3_left",
+                                      "id": 124,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T3_left",
+                                          "id": 125,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T3_left",
+                                              "id": 126,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T3_right",
+                  "id": 127,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T3_right",
+                      "id": 128,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T3_right",
+                          "id": 129,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T3_right",
+                              "id": 130,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T3_right",
+                                  "id": 131,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T3_right",
+                                      "id": 132,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T3_right",
+                                          "id": 133,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T3_right",
+                                              "id": 134,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "joints": [
+      {
+        "name": "walker/",
+        "type": "free",
+        "body": "walker/",
+        "limited": false,
+        "range": null
+      },
+      {
+        "name": "walker/head_abduct",
+        "type": "hinge",
+        "body": "walker/head",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "name": "walker/head_twist",
+        "type": "hinge",
+        "body": "walker/head",
+        "limited": true,
+        "range": [
+          -3.0,
+          3.0
+        ]
+      },
+      {
+        "name": "walker/head",
+        "type": "hinge",
+        "body": "walker/head",
+        "limited": true,
+        "range": [
+          -0.5,
+          0.3
+        ]
+      },
+      {
+        "name": "walker/rostrum",
+        "type": "hinge",
+        "body": "walker/rostrum",
+        "limited": true,
+        "range": [
+          -1.24,
+          0.183
+        ]
+      },
+      {
+        "name": "walker/haustellum_abduct",
+        "type": "hinge",
+        "body": "walker/haustellum",
+        "limited": true,
+        "range": [
+          -0.0873,
+          0.0873
+        ]
+      },
+      {
+        "name": "walker/haustellum",
+        "type": "hinge",
+        "body": "walker/haustellum",
+        "limited": true,
+        "range": [
+          -1.59,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/labrum_left",
+        "type": "hinge",
+        "body": "walker/labrum_left",
+        "limited": true,
+        "range": [
+          -0.00524,
+          1.05
+        ]
+      },
+      {
+        "name": "walker/labrum_right",
+        "type": "hinge",
+        "body": "walker/labrum_right",
+        "limited": true,
+        "range": [
+          -0.00524,
+          1.05
+        ]
+      },
+      {
+        "name": "walker/antenna_abduct_left",
+        "type": "hinge",
+        "body": "walker/antenna_left",
+        "limited": true,
+        "range": [
+          -0.4,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/antenna_twist_left",
+        "type": "hinge",
+        "body": "walker/antenna_left",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.09
+        ]
+      },
+      {
+        "name": "walker/antenna_left",
+        "type": "hinge",
+        "body": "walker/antenna_left",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.5
+        ]
+      },
+      {
+        "name": "walker/antenna_abduct_right",
+        "type": "hinge",
+        "body": "walker/antenna_right",
+        "limited": true,
+        "range": [
+          -0.4,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/antenna_twist_right",
+        "type": "hinge",
+        "body": "walker/antenna_right",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.09
+        ]
+      },
+      {
+        "name": "walker/antenna_right",
+        "type": "hinge",
+        "body": "walker/antenna_right",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.5
+        ]
+      },
+      {
+        "name": "walker/wing_yaw_left",
+        "type": "hinge",
+        "body": "walker/wing_left",
+        "limited": true,
+        "range": [
+          -1.5,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/wing_roll_left",
+        "type": "hinge",
+        "body": "walker/wing_left",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/wing_pitch_left",
+        "type": "hinge",
+        "body": "walker/wing_left",
+        "limited": true,
+        "range": [
+          -1.27,
+          2.92
+        ]
+      },
+      {
+        "name": "walker/wing_yaw_right",
+        "type": "hinge",
+        "body": "walker/wing_right",
+        "limited": true,
+        "range": [
+          -1.5,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/wing_roll_right",
+        "type": "hinge",
+        "body": "walker/wing_right",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/wing_pitch_right",
+        "type": "hinge",
+        "body": "walker/wing_right",
+        "limited": true,
+        "range": [
+          -1.27,
+          2.92
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct",
+        "type": "hinge",
+        "body": "walker/abdomen",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen",
+        "type": "hinge",
+        "body": "walker/abdomen",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_2",
+        "type": "hinge",
+        "body": "walker/abdomen_2",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_2",
+        "type": "hinge",
+        "body": "walker/abdomen_2",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_3",
+        "type": "hinge",
+        "body": "walker/abdomen_3",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_3",
+        "type": "hinge",
+        "body": "walker/abdomen_3",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_4",
+        "type": "hinge",
+        "body": "walker/abdomen_4",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_4",
+        "type": "hinge",
+        "body": "walker/abdomen_4",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_5",
+        "type": "hinge",
+        "body": "walker/abdomen_5",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_5",
+        "type": "hinge",
+        "body": "walker/abdomen_5",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_6",
+        "type": "hinge",
+        "body": "walker/abdomen_6",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_6",
+        "type": "hinge",
+        "body": "walker/abdomen_6",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_7",
+        "type": "hinge",
+        "body": "walker/abdomen_7",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_7",
+        "type": "hinge",
+        "body": "walker/abdomen_7",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/haltere_left",
+        "type": "hinge",
+        "body": "walker/haltere_left",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "name": "walker/haltere_right",
+        "type": "hinge",
+        "body": "walker/haltere_right",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "name": "ghost/",
+        "type": "free",
+        "body": "ghost/",
+        "limited": false,
+        "range": null
+      }
+    ],
+    "actuators": [
+      {
+        "name": "walker/head_abduct",
+        "ctrl_range": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "name": "walker/head_twist",
+        "ctrl_range": [
+          -3.0,
+          3.0
+        ]
+      },
+      {
+        "name": "walker/head",
+        "ctrl_range": [
+          -0.5,
+          0.3
+        ]
+      },
+      {
+        "name": "walker/wing_yaw_left",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/wing_roll_left",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/wing_pitch_left",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/wing_yaw_right",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/wing_roll_right",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/wing_pitch_right",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct",
+        "ctrl_range": [
+          -0.7,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/abdomen",
+        "ctrl_range": [
+          -1.05,
+          0.7
+        ]
+      }
+    ],
+    "sensors": [
+      {
+        "name": "walker/accelerometer",
+        "type": "accelerometer",
+        "dim": 3
+      },
+      {
+        "name": "walker/gyro",
+        "type": "gyro",
+        "dim": 3
+      },
+      {
+        "name": "walker/velocimeter",
+        "type": "velocimeter",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T1_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T1_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T2_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T2_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T3_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T3_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/accelerometer",
+        "type": "accelerometer",
+        "dim": 3
+      },
+      {
+        "name": "ghost/gyro",
+        "type": "gyro",
+        "dim": 3
+      },
+      {
+        "name": "ghost/velocimeter",
+        "type": "velocimeter",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T1_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T1_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T2_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T2_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T3_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T3_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      }
+    ]
+  },
+  "walk_model": {
+    "env_name": "walk_imitation",
+    "n_bodies": 135,
+    "n_joints": 104,
+    "n_dof": 114,
+    "n_qpos": 116,
+    "n_actuators": 59,
+    "n_sensors": 30,
+    "physics_timestep_s": 0.0002,
+    "physics_freq_hz": 5000.0,
+    "control_timestep_s": 0.002,
+    "control_freq_hz": 500.0,
+    "action_dimension": 59,
+    "total_obs_dimension": 741,
+    "observables": {
+      "walker/accelerometer": [
+        3
+      ],
+      "walker/actuator_activation": [
+        59
+      ],
+      "walker/appendages_pos": [
+        21
+      ],
+      "walker/force": [
+        18
+      ],
+      "walker/gyro": [
+        3
+      ],
+      "walker/joints_pos": [
+        85
+      ],
+      "walker/joints_vel": [
+        85
+      ],
+      "walker/touch": [
+        6
+      ],
+      "walker/velocimeter": [
+        3
+      ],
+      "walker/world_zaxis": [
+        3
+      ],
+      "walker/ref_displacement": [
+        65,
+        3
+      ],
+      "walker/ref_root_quat": [
+        65,
+        4
+      ]
+    },
+    "body_names": [
+      "world",
+      "walker/",
+      "walker/thorax",
+      "walker/head",
+      "walker/rostrum",
+      "walker/haustellum",
+      "walker/labrum_left",
+      "walker/labrum_right",
+      "walker/antenna_left",
+      "walker/antenna_right",
+      "walker/wing_left",
+      "walker/wing_right",
+      "walker/abdomen",
+      "walker/abdomen_2",
+      "walker/abdomen_3",
+      "walker/abdomen_4",
+      "walker/abdomen_5",
+      "walker/abdomen_6",
+      "walker/abdomen_7",
+      "walker/haltere_left",
+      "walker/haltere_right",
+      "walker/coxa_T1_left",
+      "walker/femur_T1_left",
+      "walker/tibia_T1_left",
+      "walker/tarsus_T1_left",
+      "walker/tarsus2_T1_left",
+      "walker/tarsus3_T1_left",
+      "walker/tarsus4_T1_left",
+      "walker/claw_T1_left",
+      "walker/coxa_T1_right",
+      "walker/femur_T1_right",
+      "walker/tibia_T1_right",
+      "walker/tarsus_T1_right",
+      "walker/tarsus2_T1_right",
+      "walker/tarsus3_T1_right",
+      "walker/tarsus4_T1_right",
+      "walker/claw_T1_right",
+      "walker/coxa_T2_left",
+      "walker/femur_T2_left",
+      "walker/tibia_T2_left",
+      "walker/tarsus_T2_left",
+      "walker/tarsus2_T2_left",
+      "walker/tarsus3_T2_left",
+      "walker/tarsus4_T2_left",
+      "walker/claw_T2_left",
+      "walker/coxa_T2_right",
+      "walker/femur_T2_right",
+      "walker/tibia_T2_right",
+      "walker/tarsus_T2_right",
+      "walker/tarsus2_T2_right",
+      "walker/tarsus3_T2_right",
+      "walker/tarsus4_T2_right",
+      "walker/claw_T2_right",
+      "walker/coxa_T3_left",
+      "walker/femur_T3_left",
+      "walker/tibia_T3_left",
+      "walker/tarsus_T3_left",
+      "walker/tarsus2_T3_left",
+      "walker/tarsus3_T3_left",
+      "walker/tarsus4_T3_left",
+      "walker/claw_T3_left",
+      "walker/coxa_T3_right",
+      "walker/femur_T3_right",
+      "walker/tibia_T3_right",
+      "walker/tarsus_T3_right",
+      "walker/tarsus2_T3_right",
+      "walker/tarsus3_T3_right",
+      "walker/tarsus4_T3_right",
+      "walker/claw_T3_right",
+      "ghost/",
+      "ghost/thorax",
+      "ghost/head",
+      "ghost/rostrum",
+      "ghost/haustellum",
+      "ghost/labrum_left",
+      "ghost/labrum_right",
+      "ghost/antenna_left",
+      "ghost/antenna_right",
+      "ghost/abdomen",
+      "ghost/abdomen_2",
+      "ghost/abdomen_3",
+      "ghost/abdomen_4",
+      "ghost/abdomen_5",
+      "ghost/abdomen_6",
+      "ghost/abdomen_7",
+      "ghost/haltere_left",
+      "ghost/haltere_right",
+      "ghost/coxa_T1_left",
+      "ghost/femur_T1_left",
+      "ghost/tibia_T1_left",
+      "ghost/tarsus_T1_left",
+      "ghost/tarsus2_T1_left",
+      "ghost/tarsus3_T1_left",
+      "ghost/tarsus4_T1_left",
+      "ghost/claw_T1_left",
+      "ghost/coxa_T1_right",
+      "ghost/femur_T1_right",
+      "ghost/tibia_T1_right",
+      "ghost/tarsus_T1_right",
+      "ghost/tarsus2_T1_right",
+      "ghost/tarsus3_T1_right",
+      "ghost/tarsus4_T1_right",
+      "ghost/claw_T1_right",
+      "ghost/coxa_T2_left",
+      "ghost/femur_T2_left",
+      "ghost/tibia_T2_left",
+      "ghost/tarsus_T2_left",
+      "ghost/tarsus2_T2_left",
+      "ghost/tarsus3_T2_left",
+      "ghost/tarsus4_T2_left",
+      "ghost/claw_T2_left",
+      "ghost/coxa_T2_right",
+      "ghost/femur_T2_right",
+      "ghost/tibia_T2_right",
+      "ghost/tarsus_T2_right",
+      "ghost/tarsus2_T2_right",
+      "ghost/tarsus3_T2_right",
+      "ghost/tarsus4_T2_right",
+      "ghost/claw_T2_right",
+      "ghost/coxa_T3_left",
+      "ghost/femur_T3_left",
+      "ghost/tibia_T3_left",
+      "ghost/tarsus_T3_left",
+      "ghost/tarsus2_T3_left",
+      "ghost/tarsus3_T3_left",
+      "ghost/tarsus4_T3_left",
+      "ghost/claw_T3_left",
+      "ghost/coxa_T3_right",
+      "ghost/femur_T3_right",
+      "ghost/tibia_T3_right",
+      "ghost/tarsus_T3_right",
+      "ghost/tarsus2_T3_right",
+      "ghost/tarsus3_T3_right",
+      "ghost/tarsus4_T3_right",
+      "ghost/claw_T3_right"
+    ],
+    "hierarchy_tree": {
+      "name": "world",
+      "id": 0,
+      "children": [
+        {
+          "name": "walker/",
+          "id": 1,
+          "children": [
+            {
+              "name": "walker/thorax",
+              "id": 2,
+              "children": [
+                {
+                  "name": "walker/head",
+                  "id": 3,
+                  "children": [
+                    {
+                      "name": "walker/rostrum",
+                      "id": 4,
+                      "children": [
+                        {
+                          "name": "walker/haustellum",
+                          "id": 5,
+                          "children": [
+                            {
+                              "name": "walker/labrum_left",
+                              "id": 6,
+                              "children": []
+                            },
+                            {
+                              "name": "walker/labrum_right",
+                              "id": 7,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "walker/antenna_left",
+                      "id": 8,
+                      "children": []
+                    },
+                    {
+                      "name": "walker/antenna_right",
+                      "id": 9,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/wing_left",
+                  "id": 10,
+                  "children": []
+                },
+                {
+                  "name": "walker/wing_right",
+                  "id": 11,
+                  "children": []
+                },
+                {
+                  "name": "walker/abdomen",
+                  "id": 12,
+                  "children": [
+                    {
+                      "name": "walker/abdomen_2",
+                      "id": 13,
+                      "children": [
+                        {
+                          "name": "walker/abdomen_3",
+                          "id": 14,
+                          "children": [
+                            {
+                              "name": "walker/abdomen_4",
+                              "id": 15,
+                              "children": [
+                                {
+                                  "name": "walker/abdomen_5",
+                                  "id": 16,
+                                  "children": [
+                                    {
+                                      "name": "walker/abdomen_6",
+                                      "id": 17,
+                                      "children": [
+                                        {
+                                          "name": "walker/abdomen_7",
+                                          "id": 18,
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/haltere_left",
+                  "id": 19,
+                  "children": []
+                },
+                {
+                  "name": "walker/haltere_right",
+                  "id": 20,
+                  "children": []
+                },
+                {
+                  "name": "walker/coxa_T1_left",
+                  "id": 21,
+                  "children": [
+                    {
+                      "name": "walker/femur_T1_left",
+                      "id": 22,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T1_left",
+                          "id": 23,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T1_left",
+                              "id": 24,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T1_left",
+                                  "id": 25,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T1_left",
+                                      "id": 26,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T1_left",
+                                          "id": 27,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T1_left",
+                                              "id": 28,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T1_right",
+                  "id": 29,
+                  "children": [
+                    {
+                      "name": "walker/femur_T1_right",
+                      "id": 30,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T1_right",
+                          "id": 31,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T1_right",
+                              "id": 32,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T1_right",
+                                  "id": 33,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T1_right",
+                                      "id": 34,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T1_right",
+                                          "id": 35,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T1_right",
+                                              "id": 36,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T2_left",
+                  "id": 37,
+                  "children": [
+                    {
+                      "name": "walker/femur_T2_left",
+                      "id": 38,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T2_left",
+                          "id": 39,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T2_left",
+                              "id": 40,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T2_left",
+                                  "id": 41,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T2_left",
+                                      "id": 42,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T2_left",
+                                          "id": 43,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T2_left",
+                                              "id": 44,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T2_right",
+                  "id": 45,
+                  "children": [
+                    {
+                      "name": "walker/femur_T2_right",
+                      "id": 46,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T2_right",
+                          "id": 47,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T2_right",
+                              "id": 48,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T2_right",
+                                  "id": 49,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T2_right",
+                                      "id": 50,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T2_right",
+                                          "id": 51,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T2_right",
+                                              "id": 52,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T3_left",
+                  "id": 53,
+                  "children": [
+                    {
+                      "name": "walker/femur_T3_left",
+                      "id": 54,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T3_left",
+                          "id": 55,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T3_left",
+                              "id": 56,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T3_left",
+                                  "id": 57,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T3_left",
+                                      "id": 58,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T3_left",
+                                          "id": 59,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T3_left",
+                                              "id": 60,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "walker/coxa_T3_right",
+                  "id": 61,
+                  "children": [
+                    {
+                      "name": "walker/femur_T3_right",
+                      "id": 62,
+                      "children": [
+                        {
+                          "name": "walker/tibia_T3_right",
+                          "id": 63,
+                          "children": [
+                            {
+                              "name": "walker/tarsus_T3_right",
+                              "id": 64,
+                              "children": [
+                                {
+                                  "name": "walker/tarsus2_T3_right",
+                                  "id": 65,
+                                  "children": [
+                                    {
+                                      "name": "walker/tarsus3_T3_right",
+                                      "id": 66,
+                                      "children": [
+                                        {
+                                          "name": "walker/tarsus4_T3_right",
+                                          "id": 67,
+                                          "children": [
+                                            {
+                                              "name": "walker/claw_T3_right",
+                                              "id": 68,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ghost/",
+          "id": 69,
+          "children": [
+            {
+              "name": "ghost/thorax",
+              "id": 70,
+              "children": [
+                {
+                  "name": "ghost/head",
+                  "id": 71,
+                  "children": [
+                    {
+                      "name": "ghost/rostrum",
+                      "id": 72,
+                      "children": [
+                        {
+                          "name": "ghost/haustellum",
+                          "id": 73,
+                          "children": [
+                            {
+                              "name": "ghost/labrum_left",
+                              "id": 74,
+                              "children": []
+                            },
+                            {
+                              "name": "ghost/labrum_right",
+                              "id": 75,
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "name": "ghost/antenna_left",
+                      "id": 76,
+                      "children": []
+                    },
+                    {
+                      "name": "ghost/antenna_right",
+                      "id": 77,
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/abdomen",
+                  "id": 78,
+                  "children": [
+                    {
+                      "name": "ghost/abdomen_2",
+                      "id": 79,
+                      "children": [
+                        {
+                          "name": "ghost/abdomen_3",
+                          "id": 80,
+                          "children": [
+                            {
+                              "name": "ghost/abdomen_4",
+                              "id": 81,
+                              "children": [
+                                {
+                                  "name": "ghost/abdomen_5",
+                                  "id": 82,
+                                  "children": [
+                                    {
+                                      "name": "ghost/abdomen_6",
+                                      "id": 83,
+                                      "children": [
+                                        {
+                                          "name": "ghost/abdomen_7",
+                                          "id": 84,
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/haltere_left",
+                  "id": 85,
+                  "children": []
+                },
+                {
+                  "name": "ghost/haltere_right",
+                  "id": 86,
+                  "children": []
+                },
+                {
+                  "name": "ghost/coxa_T1_left",
+                  "id": 87,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T1_left",
+                      "id": 88,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T1_left",
+                          "id": 89,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T1_left",
+                              "id": 90,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T1_left",
+                                  "id": 91,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T1_left",
+                                      "id": 92,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T1_left",
+                                          "id": 93,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T1_left",
+                                              "id": 94,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T1_right",
+                  "id": 95,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T1_right",
+                      "id": 96,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T1_right",
+                          "id": 97,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T1_right",
+                              "id": 98,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T1_right",
+                                  "id": 99,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T1_right",
+                                      "id": 100,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T1_right",
+                                          "id": 101,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T1_right",
+                                              "id": 102,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T2_left",
+                  "id": 103,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T2_left",
+                      "id": 104,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T2_left",
+                          "id": 105,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T2_left",
+                              "id": 106,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T2_left",
+                                  "id": 107,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T2_left",
+                                      "id": 108,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T2_left",
+                                          "id": 109,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T2_left",
+                                              "id": 110,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T2_right",
+                  "id": 111,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T2_right",
+                      "id": 112,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T2_right",
+                          "id": 113,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T2_right",
+                              "id": 114,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T2_right",
+                                  "id": 115,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T2_right",
+                                      "id": 116,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T2_right",
+                                          "id": 117,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T2_right",
+                                              "id": 118,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T3_left",
+                  "id": 119,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T3_left",
+                      "id": 120,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T3_left",
+                          "id": 121,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T3_left",
+                              "id": 122,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T3_left",
+                                  "id": 123,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T3_left",
+                                      "id": 124,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T3_left",
+                                          "id": 125,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T3_left",
+                                              "id": 126,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "name": "ghost/coxa_T3_right",
+                  "id": 127,
+                  "children": [
+                    {
+                      "name": "ghost/femur_T3_right",
+                      "id": 128,
+                      "children": [
+                        {
+                          "name": "ghost/tibia_T3_right",
+                          "id": 129,
+                          "children": [
+                            {
+                              "name": "ghost/tarsus_T3_right",
+                              "id": 130,
+                              "children": [
+                                {
+                                  "name": "ghost/tarsus2_T3_right",
+                                  "id": 131,
+                                  "children": [
+                                    {
+                                      "name": "ghost/tarsus3_T3_right",
+                                      "id": 132,
+                                      "children": [
+                                        {
+                                          "name": "ghost/tarsus4_T3_right",
+                                          "id": 133,
+                                          "children": [
+                                            {
+                                              "name": "ghost/claw_T3_right",
+                                              "id": 134,
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "joints": [
+      {
+        "name": "walker/",
+        "type": "free",
+        "body": "walker/",
+        "limited": false,
+        "range": null
+      },
+      {
+        "name": "walker/head_abduct",
+        "type": "hinge",
+        "body": "walker/head",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "name": "walker/head_twist",
+        "type": "hinge",
+        "body": "walker/head",
+        "limited": true,
+        "range": [
+          -3.0,
+          3.0
+        ]
+      },
+      {
+        "name": "walker/head",
+        "type": "hinge",
+        "body": "walker/head",
+        "limited": true,
+        "range": [
+          -0.5,
+          0.3
+        ]
+      },
+      {
+        "name": "walker/rostrum",
+        "type": "hinge",
+        "body": "walker/rostrum",
+        "limited": true,
+        "range": [
+          -1.24,
+          0.183
+        ]
+      },
+      {
+        "name": "walker/haustellum_abduct",
+        "type": "hinge",
+        "body": "walker/haustellum",
+        "limited": true,
+        "range": [
+          -0.0873,
+          0.0873
+        ]
+      },
+      {
+        "name": "walker/haustellum",
+        "type": "hinge",
+        "body": "walker/haustellum",
+        "limited": true,
+        "range": [
+          -1.59,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/labrum_left",
+        "type": "hinge",
+        "body": "walker/labrum_left",
+        "limited": true,
+        "range": [
+          -0.00524,
+          1.05
+        ]
+      },
+      {
+        "name": "walker/labrum_right",
+        "type": "hinge",
+        "body": "walker/labrum_right",
+        "limited": true,
+        "range": [
+          -0.00524,
+          1.05
+        ]
+      },
+      {
+        "name": "walker/antenna_abduct_left",
+        "type": "hinge",
+        "body": "walker/antenna_left",
+        "limited": true,
+        "range": [
+          -0.4,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/antenna_twist_left",
+        "type": "hinge",
+        "body": "walker/antenna_left",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.09
+        ]
+      },
+      {
+        "name": "walker/antenna_left",
+        "type": "hinge",
+        "body": "walker/antenna_left",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.5
+        ]
+      },
+      {
+        "name": "walker/antenna_abduct_right",
+        "type": "hinge",
+        "body": "walker/antenna_right",
+        "limited": true,
+        "range": [
+          -0.4,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/antenna_twist_right",
+        "type": "hinge",
+        "body": "walker/antenna_right",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.09
+        ]
+      },
+      {
+        "name": "walker/antenna_right",
+        "type": "hinge",
+        "body": "walker/antenna_right",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.5
+        ]
+      },
+      {
+        "name": "walker/wing_yaw_left",
+        "type": "hinge",
+        "body": "walker/wing_left",
+        "limited": true,
+        "range": [
+          -1.5,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/wing_roll_left",
+        "type": "hinge",
+        "body": "walker/wing_left",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/wing_pitch_left",
+        "type": "hinge",
+        "body": "walker/wing_left",
+        "limited": true,
+        "range": [
+          -1.27,
+          2.92
+        ]
+      },
+      {
+        "name": "walker/wing_yaw_right",
+        "type": "hinge",
+        "body": "walker/wing_right",
+        "limited": true,
+        "range": [
+          -1.5,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/wing_roll_right",
+        "type": "hinge",
+        "body": "walker/wing_right",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/wing_pitch_right",
+        "type": "hinge",
+        "body": "walker/wing_right",
+        "limited": true,
+        "range": [
+          -1.27,
+          2.92
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct",
+        "type": "hinge",
+        "body": "walker/abdomen",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen",
+        "type": "hinge",
+        "body": "walker/abdomen",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_2",
+        "type": "hinge",
+        "body": "walker/abdomen_2",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_2",
+        "type": "hinge",
+        "body": "walker/abdomen_2",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_3",
+        "type": "hinge",
+        "body": "walker/abdomen_3",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_3",
+        "type": "hinge",
+        "body": "walker/abdomen_3",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_4",
+        "type": "hinge",
+        "body": "walker/abdomen_4",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_4",
+        "type": "hinge",
+        "body": "walker/abdomen_4",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_5",
+        "type": "hinge",
+        "body": "walker/abdomen_5",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_5",
+        "type": "hinge",
+        "body": "walker/abdomen_5",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_6",
+        "type": "hinge",
+        "body": "walker/abdomen_6",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_6",
+        "type": "hinge",
+        "body": "walker/abdomen_6",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct_7",
+        "type": "hinge",
+        "body": "walker/abdomen_7",
+        "limited": true,
+        "range": [
+          -0.1,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/abdomen_7",
+        "type": "hinge",
+        "body": "walker/abdomen_7",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.1
+        ]
+      },
+      {
+        "name": "walker/haltere_left",
+        "type": "hinge",
+        "body": "walker/haltere_left",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "name": "walker/haltere_right",
+        "type": "hinge",
+        "body": "walker/haltere_right",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T1_left",
+        "type": "hinge",
+        "body": "walker/coxa_T1_left",
+        "limited": true,
+        "range": [
+          -1.0,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T1_left",
+        "type": "hinge",
+        "body": "walker/coxa_T1_left",
+        "limited": true,
+        "range": [
+          -0.8,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T1_left",
+        "type": "hinge",
+        "body": "walker/coxa_T1_left",
+        "limited": true,
+        "range": [
+          -0.2,
+          1.7
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T1_left",
+        "type": "hinge",
+        "body": "walker/femur_T1_left",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T1_left",
+        "type": "hinge",
+        "body": "walker/femur_T1_left",
+        "limited": true,
+        "range": [
+          -0.15,
+          2.0
+        ]
+      },
+      {
+        "name": "walker/tibia_T1_left",
+        "type": "hinge",
+        "body": "walker/tibia_T1_left",
+        "limited": true,
+        "range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T1_left",
+        "type": "hinge",
+        "body": "walker/tarsus_T1_left",
+        "limited": true,
+        "range": [
+          -0.7,
+          1.2
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T1_left",
+        "type": "hinge",
+        "body": "walker/tarsus2_T1_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus3_T1_left",
+        "type": "hinge",
+        "body": "walker/tarsus3_T1_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus4_T1_left",
+        "type": "hinge",
+        "body": "walker/tarsus4_T1_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus5_T1_left",
+        "type": "hinge",
+        "body": "walker/claw_T1_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T1_right",
+        "type": "hinge",
+        "body": "walker/coxa_T1_right",
+        "limited": true,
+        "range": [
+          -1.0,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T1_right",
+        "type": "hinge",
+        "body": "walker/coxa_T1_right",
+        "limited": true,
+        "range": [
+          -0.8,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T1_right",
+        "type": "hinge",
+        "body": "walker/coxa_T1_right",
+        "limited": true,
+        "range": [
+          -0.2,
+          1.7
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T1_right",
+        "type": "hinge",
+        "body": "walker/femur_T1_right",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T1_right",
+        "type": "hinge",
+        "body": "walker/femur_T1_right",
+        "limited": true,
+        "range": [
+          -0.15,
+          2.0
+        ]
+      },
+      {
+        "name": "walker/tibia_T1_right",
+        "type": "hinge",
+        "body": "walker/tibia_T1_right",
+        "limited": true,
+        "range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T1_right",
+        "type": "hinge",
+        "body": "walker/tarsus_T1_right",
+        "limited": true,
+        "range": [
+          -0.7,
+          1.2
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T1_right",
+        "type": "hinge",
+        "body": "walker/tarsus2_T1_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus3_T1_right",
+        "type": "hinge",
+        "body": "walker/tarsus3_T1_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus4_T1_right",
+        "type": "hinge",
+        "body": "walker/tarsus4_T1_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus5_T1_right",
+        "type": "hinge",
+        "body": "walker/claw_T1_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T2_left",
+        "type": "hinge",
+        "body": "walker/coxa_T2_left",
+        "limited": true,
+        "range": [
+          -0.5,
+          0.3
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T2_left",
+        "type": "hinge",
+        "body": "walker/coxa_T2_left",
+        "limited": true,
+        "range": [
+          -0.75,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T2_left",
+        "type": "hinge",
+        "body": "walker/coxa_T2_left",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T2_left",
+        "type": "hinge",
+        "body": "walker/femur_T2_left",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T2_left",
+        "type": "hinge",
+        "body": "walker/femur_T2_left",
+        "limited": true,
+        "range": [
+          -0.15,
+          2.0
+        ]
+      },
+      {
+        "name": "walker/tibia_T2_left",
+        "type": "hinge",
+        "body": "walker/tibia_T2_left",
+        "limited": true,
+        "range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T2_left",
+        "type": "hinge",
+        "body": "walker/tarsus_T2_left",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.8
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T2_left",
+        "type": "hinge",
+        "body": "walker/tarsus2_T2_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus3_T2_left",
+        "type": "hinge",
+        "body": "walker/tarsus3_T2_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus4_T2_left",
+        "type": "hinge",
+        "body": "walker/tarsus4_T2_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus5_T2_left",
+        "type": "hinge",
+        "body": "walker/claw_T2_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T2_right",
+        "type": "hinge",
+        "body": "walker/coxa_T2_right",
+        "limited": true,
+        "range": [
+          -0.5,
+          0.3
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T2_right",
+        "type": "hinge",
+        "body": "walker/coxa_T2_right",
+        "limited": true,
+        "range": [
+          -0.75,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T2_right",
+        "type": "hinge",
+        "body": "walker/coxa_T2_right",
+        "limited": true,
+        "range": [
+          -0.2,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T2_right",
+        "type": "hinge",
+        "body": "walker/femur_T2_right",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T2_right",
+        "type": "hinge",
+        "body": "walker/femur_T2_right",
+        "limited": true,
+        "range": [
+          -0.15,
+          2.0
+        ]
+      },
+      {
+        "name": "walker/tibia_T2_right",
+        "type": "hinge",
+        "body": "walker/tibia_T2_right",
+        "limited": true,
+        "range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T2_right",
+        "type": "hinge",
+        "body": "walker/tarsus_T2_right",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.8
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T2_right",
+        "type": "hinge",
+        "body": "walker/tarsus2_T2_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus3_T2_right",
+        "type": "hinge",
+        "body": "walker/tarsus3_T2_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus4_T2_right",
+        "type": "hinge",
+        "body": "walker/tarsus4_T2_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus5_T2_right",
+        "type": "hinge",
+        "body": "walker/claw_T2_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T3_left",
+        "type": "hinge",
+        "body": "walker/coxa_T3_left",
+        "limited": true,
+        "range": [
+          -0.9,
+          0.25
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T3_left",
+        "type": "hinge",
+        "body": "walker/coxa_T3_left",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T3_left",
+        "type": "hinge",
+        "body": "walker/coxa_T3_left",
+        "limited": true,
+        "range": [
+          -0.3,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T3_left",
+        "type": "hinge",
+        "body": "walker/femur_T3_left",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T3_left",
+        "type": "hinge",
+        "body": "walker/femur_T3_left",
+        "limited": true,
+        "range": [
+          -0.7,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/tibia_T3_left",
+        "type": "hinge",
+        "body": "walker/tibia_T3_left",
+        "limited": true,
+        "range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T3_left",
+        "type": "hinge",
+        "body": "walker/tarsus_T3_left",
+        "limited": true,
+        "range": [
+          -0.8,
+          1.2
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T3_left",
+        "type": "hinge",
+        "body": "walker/tarsus2_T3_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus3_T3_left",
+        "type": "hinge",
+        "body": "walker/tarsus3_T3_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus4_T3_left",
+        "type": "hinge",
+        "body": "walker/tarsus4_T3_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus5_T3_left",
+        "type": "hinge",
+        "body": "walker/claw_T3_left",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T3_right",
+        "type": "hinge",
+        "body": "walker/coxa_T3_right",
+        "limited": true,
+        "range": [
+          -0.9,
+          0.25
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T3_right",
+        "type": "hinge",
+        "body": "walker/coxa_T3_right",
+        "limited": true,
+        "range": [
+          -0.15,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T3_right",
+        "type": "hinge",
+        "body": "walker/coxa_T3_right",
+        "limited": true,
+        "range": [
+          -0.3,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T3_right",
+        "type": "hinge",
+        "body": "walker/femur_T3_right",
+        "limited": true,
+        "range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T3_right",
+        "type": "hinge",
+        "body": "walker/femur_T3_right",
+        "limited": true,
+        "range": [
+          -0.7,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/tibia_T3_right",
+        "type": "hinge",
+        "body": "walker/tibia_T3_right",
+        "limited": true,
+        "range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T3_right",
+        "type": "hinge",
+        "body": "walker/tarsus_T3_right",
+        "limited": true,
+        "range": [
+          -0.8,
+          1.2
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T3_right",
+        "type": "hinge",
+        "body": "walker/tarsus2_T3_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus3_T3_right",
+        "type": "hinge",
+        "body": "walker/tarsus3_T3_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus4_T3_right",
+        "type": "hinge",
+        "body": "walker/tarsus4_T3_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "walker/tarsus5_T3_right",
+        "type": "hinge",
+        "body": "walker/claw_T3_right",
+        "limited": true,
+        "range": [
+          -0.36,
+          0.36
+        ]
+      },
+      {
+        "name": "ghost/",
+        "type": "free",
+        "body": "ghost/",
+        "limited": false,
+        "range": null
+      }
+    ],
+    "actuators": [
+      {
+        "name": "walker/head_abduct",
+        "ctrl_range": [
+          -0.2,
+          0.2
+        ]
+      },
+      {
+        "name": "walker/head_twist",
+        "ctrl_range": [
+          -3.0,
+          3.0
+        ]
+      },
+      {
+        "name": "walker/head",
+        "ctrl_range": [
+          -0.5,
+          0.3
+        ]
+      },
+      {
+        "name": "walker/abdomen_abduct",
+        "ctrl_range": [
+          -0.7,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/abdomen",
+        "ctrl_range": [
+          -1.05,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T1_left",
+        "ctrl_range": [
+          -1.0,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T1_left",
+        "ctrl_range": [
+          -0.8,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T1_left",
+        "ctrl_range": [
+          -0.2,
+          1.7
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T1_left",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T1_left",
+        "ctrl_range": [
+          -0.15,
+          2.0
+        ]
+      },
+      {
+        "name": "walker/tibia_T1_left",
+        "ctrl_range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T1_left",
+        "ctrl_range": [
+          -0.7,
+          1.2
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T1_left",
+        "ctrl_range": [
+          -0.9,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T1_right",
+        "ctrl_range": [
+          -1.0,
+          0.7
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T1_right",
+        "ctrl_range": [
+          -0.8,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T1_right",
+        "ctrl_range": [
+          -0.2,
+          1.7
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T1_right",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T1_right",
+        "ctrl_range": [
+          -0.15,
+          2.0
+        ]
+      },
+      {
+        "name": "walker/tibia_T1_right",
+        "ctrl_range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T1_right",
+        "ctrl_range": [
+          -0.7,
+          1.2
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T1_right",
+        "ctrl_range": [
+          -0.9,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T2_left",
+        "ctrl_range": [
+          -0.5,
+          0.3
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T2_left",
+        "ctrl_range": [
+          -0.75,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T2_left",
+        "ctrl_range": [
+          -0.2,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T2_left",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T2_left",
+        "ctrl_range": [
+          -0.15,
+          2.0
+        ]
+      },
+      {
+        "name": "walker/tibia_T2_left",
+        "ctrl_range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T2_left",
+        "ctrl_range": [
+          -1.0,
+          1.8
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T2_left",
+        "ctrl_range": [
+          -0.9,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T2_right",
+        "ctrl_range": [
+          -0.5,
+          0.3
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T2_right",
+        "ctrl_range": [
+          -0.75,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T2_right",
+        "ctrl_range": [
+          -0.2,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T2_right",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T2_right",
+        "ctrl_range": [
+          -0.15,
+          2.0
+        ]
+      },
+      {
+        "name": "walker/tibia_T2_right",
+        "ctrl_range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T2_right",
+        "ctrl_range": [
+          -1.0,
+          1.8
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T2_right",
+        "ctrl_range": [
+          -0.9,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T3_left",
+        "ctrl_range": [
+          -0.9,
+          0.25
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T3_left",
+        "ctrl_range": [
+          -0.15,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T3_left",
+        "ctrl_range": [
+          -0.3,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T3_left",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T3_left",
+        "ctrl_range": [
+          -0.7,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/tibia_T3_left",
+        "ctrl_range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T3_left",
+        "ctrl_range": [
+          -0.8,
+          1.2
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T3_left",
+        "ctrl_range": [
+          -0.9,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/coxa_abduct_T3_right",
+        "ctrl_range": [
+          -0.9,
+          0.25
+        ]
+      },
+      {
+        "name": "walker/coxa_twist_T3_right",
+        "ctrl_range": [
+          -0.15,
+          0.8
+        ]
+      },
+      {
+        "name": "walker/coxa_T3_right",
+        "ctrl_range": [
+          -0.3,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/femur_twist_T3_right",
+        "ctrl_range": [
+          -1.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/femur_T3_right",
+        "ctrl_range": [
+          -0.7,
+          1.5
+        ]
+      },
+      {
+        "name": "walker/tibia_T3_right",
+        "ctrl_range": [
+          -1.35,
+          1.3
+        ]
+      },
+      {
+        "name": "walker/tarsus_T3_right",
+        "ctrl_range": [
+          -0.8,
+          1.2
+        ]
+      },
+      {
+        "name": "walker/tarsus2_T3_right",
+        "ctrl_range": [
+          -0.9,
+          0.9
+        ]
+      },
+      {
+        "name": "walker/adhere_claw_T1_left",
+        "ctrl_range": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/adhere_claw_T1_right",
+        "ctrl_range": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/adhere_claw_T2_left",
+        "ctrl_range": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/adhere_claw_T2_right",
+        "ctrl_range": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/adhere_claw_T3_left",
+        "ctrl_range": [
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "name": "walker/adhere_claw_T3_right",
+        "ctrl_range": [
+          0.0,
+          1.0
+        ]
+      }
+    ],
+    "sensors": [
+      {
+        "name": "walker/accelerometer",
+        "type": "accelerometer",
+        "dim": 3
+      },
+      {
+        "name": "walker/gyro",
+        "type": "gyro",
+        "dim": 3
+      },
+      {
+        "name": "walker/velocimeter",
+        "type": "velocimeter",
+        "dim": 3
+      },
+      {
+        "name": "walker/force_tarsus_T1_left",
+        "type": "force",
+        "dim": 3
+      },
+      {
+        "name": "walker/force_tarsus_T1_right",
+        "type": "force",
+        "dim": 3
+      },
+      {
+        "name": "walker/force_tarsus_T2_left",
+        "type": "force",
+        "dim": 3
+      },
+      {
+        "name": "walker/force_tarsus_T2_right",
+        "type": "force",
+        "dim": 3
+      },
+      {
+        "name": "walker/force_tarsus_T3_left",
+        "type": "force",
+        "dim": 3
+      },
+      {
+        "name": "walker/force_tarsus_T3_right",
+        "type": "force",
+        "dim": 3
+      },
+      {
+        "name": "walker/touch_claw_T1_left",
+        "type": "touch",
+        "dim": 1
+      },
+      {
+        "name": "walker/touch_claw_T1_right",
+        "type": "touch",
+        "dim": 1
+      },
+      {
+        "name": "walker/touch_claw_T2_left",
+        "type": "touch",
+        "dim": 1
+      },
+      {
+        "name": "walker/touch_claw_T2_right",
+        "type": "touch",
+        "dim": 1
+      },
+      {
+        "name": "walker/touch_claw_T3_left",
+        "type": "touch",
+        "dim": 1
+      },
+      {
+        "name": "walker/touch_claw_T3_right",
+        "type": "touch",
+        "dim": 1
+      },
+      {
+        "name": "walker/claw_T1_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T1_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T2_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T2_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T3_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "walker/claw_T3_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/accelerometer",
+        "type": "accelerometer",
+        "dim": 3
+      },
+      {
+        "name": "ghost/gyro",
+        "type": "gyro",
+        "dim": 3
+      },
+      {
+        "name": "ghost/velocimeter",
+        "type": "velocimeter",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T1_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T1_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T2_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T2_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T3_left_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      },
+      {
+        "name": "ghost/claw_T3_right_end_effector",
+        "type": "frameyaxis",
+        "dim": 3
+      }
+    ]
+  }
+}

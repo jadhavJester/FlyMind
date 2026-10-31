@@ -1,0 +1,30 @@
+# BioFlight: Baseline Imitation Learning Configuration (Phase 6)
+
+experiment:
+  name: "exp_001_mlp_baseline"
+  checkpoint_dir: "checkpoints/imitation/exp_001"
+  results_dir: "results/imitation/exp_001"
+  seed: 42
+
+data:
+  npz_path: "data/processed/flight_data_processed.npz"
+  batch_size: 256
+  num_workers: 0
+
+model:
+  input_dim: 28
+  action_dim: 12
+  hidden_dims: [256, 256, 128]
+  activation: "silu"
+  action_scale: 3.0
+  dropout: 0.0
+
+training:
+  epochs: 25
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  loss_fn: "mse"  # Mean Squared Error
+  lr_scheduler: "cosine"  # CosineAnnealingLR
+  min_lr: 0.00001
+  save_frequency: 5
+  eval_frequency: 1

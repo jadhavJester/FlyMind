@@ -1,0 +1,57 @@
+# Python environment
+.venv/
+env/
+venv/
+ENV/
+*.pyc
+__pycache__/
+*.py[cod]
+*$py.class
+
+# MuJoCo / DM Control temporary caches
+.mujoco/
+
+# Large datasets (store in data/raw or data/processed, do not commit)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+*.hdf5
+*.h5
+*.zip
+*.tar.gz
+
+# Checkpoints and trained weights
+checkpoints/*
+!checkpoints/.gitkeep
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Renderings, videos, and experiment artifacts
+videos/*
+!videos/.gitkeep
+*.mp4
+*.webp
+*.gif
+*.avi
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Scratch and probe files
+_probe_*.py
+_cam_*
+_out*.txt
+MUJOCO_LOG.TXT
+.pytest_cache/
+
+# Upstream cloned research repos
+upstream/

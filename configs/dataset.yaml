@@ -1,0 +1,29 @@
+# BioFlight: Dataset Preprocessing Configuration (Phase 5)
+
+data:
+  raw_hdf5_path: "data/raw/flight-dataset_saccade-evasion_augmented.hdf5"
+  wing_pattern_path: "data/raw/wing_pattern_fmech.npy"
+  processed_output_dir: "data/processed"
+  processed_filename: "flight_data_processed.npz"
+
+splitting:
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  random_seed: 42
+  stratify_by_type: true
+  split_by_trajectory: true  # Guarantees zero temporal data leakage
+
+features:
+  # Kinematic formulation
+  include_relative_pos: true
+  include_relative_vel: true
+  include_quaternion: true
+  include_angular_vel: true
+  lookahead_steps: 5  # Matches FlyBody future_steps in flight_imitation
+  normalize_inputs: true
+  
+target:
+  # Inverse flight dynamics / tracking control targets
+  predict_velocity_change: true
+  target_dim: 12  # Matches FlyBody flight action dimension

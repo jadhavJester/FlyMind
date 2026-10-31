@@ -1,0 +1,7 @@
+{
+  "num_episodes": 10,
+  "survival_rate_percent": 0.0,
+  "mean_return": -2686.9603793466185,
+  "mean_pos_error_cm": 0.13774323769892394,
+  "mean_steps": 69.0
+}

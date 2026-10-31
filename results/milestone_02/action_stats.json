@@ -1,0 +1,98 @@
+{
+  "channel_0": {
+    "name": "head_abduct",
+    "min": -0.2,
+    "max": 0.2,
+    "units": "radians",
+    "description": "Head roll / lateral abduction angle",
+    "effect": "Head roll stabilization"
+  },
+  "channel_1": {
+    "name": "head_twist",
+    "min": -3.0,
+    "max": 3.0,
+    "units": "radians",
+    "description": "Head yaw / twist angle",
+    "effect": "Head gaze / yaw tracking"
+  },
+  "channel_2": {
+    "name": "head",
+    "min": -0.5,
+    "max": 0.3,
+    "units": "radians",
+    "description": "Head pitch / flexion-extension angle",
+    "effect": "Head pitch stabilization"
+  },
+  "channel_3": {
+    "name": "wing_yaw_left",
+    "min": -1.0,
+    "max": 1.0,
+    "units": "radians",
+    "description": "Left wing stroke angle offset (bias)",
+    "effect": "Modulates stroke forward/backward amplitude"
+  },
+  "channel_4": {
+    "name": "wing_roll_left",
+    "min": -1.0,
+    "max": 1.0,
+    "units": "radians",
+    "description": "Left wing deviation / elevation offset",
+    "effect": "Modulates stroke plane elevation / bank"
+  },
+  "channel_5": {
+    "name": "wing_pitch_left",
+    "min": -1.0,
+    "max": 1.0,
+    "units": "radians",
+    "description": "Left wing feathering / angle-of-attack offset",
+    "effect": "Modulates wing lift and drag coefficients"
+  },
+  "channel_6": {
+    "name": "wing_yaw_right",
+    "min": -1.0,
+    "max": 1.0,
+    "units": "radians",
+    "description": "Right wing stroke angle offset (bias)",
+    "effect": "Modulates stroke forward/backward amplitude"
+  },
+  "channel_7": {
+    "name": "wing_roll_right",
+    "min": -1.0,
+    "max": 1.0,
+    "units": "radians",
+    "description": "Right wing deviation / elevation offset",
+    "effect": "Modulates stroke plane elevation / bank"
+  },
+  "channel_8": {
+    "name": "wing_pitch_right",
+    "min": -1.0,
+    "max": 1.0,
+    "units": "radians",
+    "description": "Right wing feathering / angle-of-attack offset",
+    "effect": "Modulates wing lift and drag coefficients"
+  },
+  "channel_9": {
+    "name": "abdomen_abduct",
+    "min": -0.7,
+    "max": 0.7,
+    "units": "radians",
+    "description": "Abdominal lateral steering / yaw angle",
+    "effect": "Trims body yaw torque in flight"
+  },
+  "channel_10": {
+    "name": "abdomen",
+    "min": -1.05,
+    "max": 0.7,
+    "units": "radians",
+    "description": "Abdominal flexion / pitch angle",
+    "effect": "Trims body pitch attitude and CoM location"
+  },
+  "channel_11": {
+    "name": "user_0",
+    "min": -1.0,
+    "max": 1.0,
+    "units": "[-1, 1]",
+    "description": "Normalized wingbeat flapping frequency bias",
+    "effect": "Scales base flapping freq +/- 10% (lift gain)"
+  }
+}

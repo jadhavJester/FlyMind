@@ -1,0 +1,72 @@
+{
+  "aggregate": {
+    "flight_duration_s": 0.0456,
+    "survival_fraction": 0.7599999999999999,
+    "crashed": 0.6666666666666666,
+    "pos_rmse": 0.25457731978536263,
+    "pos_mae": 0.18395853313248978,
+    "max_pos_deviation": 0.6048896464315593,
+    "vel_rmse": 17.15104730205469,
+    "target_vel_error": 7.6937647880773525,
+    "roll_error_deg": 81.79356604871595,
+    "pitch_error_deg": 16.18880405976744,
+    "yaw_error_deg": 77.50089237289018,
+    "roll_variance": 9164.721085952098,
+    "action_magnitude": 0.3970053692658742,
+    "action_smoothness": 0.8749809662501017,
+    "control_effort": 4.283172130584717
+  },
+  "episodes": [
+    {
+      "flight_duration_s": 0.039,
+      "survival_fraction": 0.6499999999999999,
+      "crashed": 1.0,
+      "pos_rmse": 0.18297493928379796,
+      "pos_mae": 0.13672484468674206,
+      "max_pos_deviation": 0.4214040487283282,
+      "vel_rmse": 16.426531290235335,
+      "target_vel_error": 7.874204727012969,
+      "roll_error_deg": 79.32066136715261,
+      "pitch_error_deg": 15.369760087710043,
+      "yaw_error_deg": 88.91332457117264,
+      "roll_variance": 9741.536050797156,
+      "action_magnitude": 0.3661437928676605,
+      "action_smoothness": 0.7418975830078125,
+      "control_effort": 3.6126556396484375
+    },
+    {
+      "flight_duration_s": 0.060000000000000005,
+      "survival_fraction": 1.0,
+      "crashed": 0.0,
+      "pos_rmse": 0.37718074082836694,
+      "pos_mae": 0.26395456349911695,
+      "max_pos_deviation": 0.9300469475648097,
+      "vel_rmse": 21.273128065344974,
+      "target_vel_error": 8.835596075834061,
+      "roll_error_deg": 110.82707016076402,
+      "pitch_error_deg": 17.408084215545635,
+      "yaw_error_deg": 72.07031001309498,
+      "roll_variance": 13987.10739596894,
+      "action_magnitude": 0.403806209564209,
+      "action_smoothness": 0.8799247741699219,
+      "control_effort": 4.3604021072387695
+    },
+    {
+      "flight_duration_s": 0.0378,
+      "survival_fraction": 0.63,
+      "crashed": 1.0,
+      "pos_rmse": 0.20357627924392294,
+      "pos_mae": 0.15119619121161032,
+      "max_pos_deviation": 0.46321794300154,
+      "vel_rmse": 13.753482550583758,
+      "target_vel_error": 6.371493561385026,
+      "roll_error_deg": 55.23296661823123,
+      "pitch_error_deg": 15.78856787604664,
+      "yaw_error_deg": 71.51904253440291,
+      "roll_variance": 3765.5198110901965,
+      "action_magnitude": 0.4210661053657532,
+      "action_smoothness": 1.0031205415725708,
+      "control_effort": 4.876458644866943
+    }
+  ]
+}

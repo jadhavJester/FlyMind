@@ -1,0 +1,12 @@
+{
+  "architecture_a_direct": {
+    "mean_dist_cm": 2.492294806939152,
+    "interception_rate_percent": 0.0,
+    "survival_rate_percent": 100.0
+  },
+  "architecture_b_hierarchical": {
+    "mean_dist_cm": 2.508634300188703,
+    "interception_rate_percent": 0.0,
+    "survival_rate_percent": 100.0
+  }
+}

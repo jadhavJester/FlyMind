@@ -1,0 +1,77 @@
+{
+  "baseline_zero_action": {
+    "name": "Baseline (Zero Kinematic Bias)",
+    "delta_pos_cm": [
+      0.47543795542839873,
+      -0.00020881850699218418,
+      -0.3627689053095009
+    ],
+    "net_displacement_cm": 0.598032249737887,
+    "final_speed_cms": 40.97905911058369,
+    "final_euler_deg": [
+      -42.30093214854575,
+      -37.951200990242526,
+      -71.92236779543654
+    ]
+  },
+  "differential_wing_roll_bank": {
+    "name": "Differential Wing Roll (+0.5 L, -0.5 R)",
+    "delta_pos_cm": [
+      0.510913816404251,
+      0.06642125028025017,
+      -0.25079113438242184
+    ],
+    "net_displacement_cm": 0.5730103867875087,
+    "final_speed_cms": 34.48316581002901,
+    "final_euler_deg": [
+      -60.3198861852377,
+      -39.948105791678174,
+      152.5429971259026
+    ]
+  },
+  "symmetric_wing_pitch_thrust": {
+    "name": "Symmetric Wing Pitch (+0.5 AoA)",
+    "delta_pos_cm": [
+      0.3876549657862736,
+      0.0033133544161784677,
+      -0.2006344781152053
+    ],
+    "net_displacement_cm": 0.4365106466339681,
+    "final_speed_cms": 15.35820416304453,
+    "final_euler_deg": [
+      139.81504143627322,
+      6.799216362667149,
+      -167.12808436798068
+    ]
+  },
+  "frequency_boost_climb": {
+    "name": "Max Wing Flapping Frequency (+100% Bias)",
+    "delta_pos_cm": [
+      0.467588067536023,
+      0.07780827239686454,
+      -0.21262249094359498
+    ],
+    "net_displacement_cm": 0.5195200206060554,
+    "final_speed_cms": 10.173988783453659,
+    "final_euler_deg": [
+      -123.32915730717852,
+      -43.615240560865516,
+      26.015905864156043
+    ]
+  },
+  "abdominal_steering_yaw": {
+    "name": "Abdominal Lateral Steering (+0.5 rad)",
+    "delta_pos_cm": [
+      0.4809360230011288,
+      0.028973047761054572,
+      -0.35848928679276326
+    ],
+    "net_displacement_cm": 0.600544306826641,
+    "final_speed_cms": 20.832433911375027,
+    "final_euler_deg": [
+      -132.39855678293407,
+      86.13745410363019,
+      -88.43677279168371
+    ]
+  }
+}
