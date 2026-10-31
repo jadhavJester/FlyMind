@@ -23,6 +23,8 @@ class FlightEpisodeMetrics:
     saccade_count: int
     mean_computation_time_ms: float
     time_to_first_reaction_s: Optional[float] = None
+    trajectory_3d: List[List[float]] = field(default_factory=list)  # [[x, y, z, yaw], ...]
+    obstacles: List[dict] = field(default_factory=list)
 
 
 class MetricsCollector:
@@ -35,6 +37,8 @@ class MetricsCollector:
         self.seed = seed
 
         self.positions: List[np.ndarray] = []
+        self.trajectory_3d: List[List[float]] = []
+        self.obstacles: List[dict] = []
         self.speeds: List[float] = []
         self.clearances: List[float] = []
         self.step_times_ms: List[float] = []
@@ -52,14 +56,18 @@ class MetricsCollector:
         step_time_ms: float,
         is_saccading: bool,
         current_time_s: float,
+        yaw: float = 0.0,
     ) -> None:
         """Log one simulation step."""
-        self.positions.append(np.array(position, copy=True))
+        pos = np.array(position, copy=True)
+        self.positions.append(pos)
+        self.trajectory_3d.append([float(pos[0]), float(pos[1]), float(pos[2]), float(yaw)])
         speed = float(np.linalg.norm(velocity[:2]))  # planar ground speed
         self.speeds.append(speed)
         self.clearances.append(float(clearance_m))
         self.step_times_ms.append(float(step_time_ms))
         self.total_time_s = current_time_s
+
 
         if is_saccading and self.first_reaction_time is None:
             self.first_reaction_time = current_time_s
@@ -100,4 +108,7 @@ class MetricsCollector:
             saccade_count=self.saccade_events,
             mean_computation_time_ms=mean_comp,
             time_to_first_reaction_s=self.first_reaction_time,
+            trajectory_3d=self.trajectory_3d,
+            obstacles=self.obstacles,
         )
+

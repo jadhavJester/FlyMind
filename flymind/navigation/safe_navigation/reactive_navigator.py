@@ -82,20 +82,23 @@ class ReactiveNavigator:
             speed_factor = max(0.25, 1.0 - risk_map.max_risk)
             vx = self.nominal_cruise_speed * speed_factor
 
-            # Steer toward WTA gap angle
-            desired_yaw_rate = self.yaw_gain * gap_decision.target_azimuth_rad
+            # Camera azimuth is positive rightwards (+X_cam = -Y_body)
+            # Turning right in right-handed Z-up frame corresponds to negative yaw rate
+            desired_yaw_rate = -self.yaw_gain * gap_decision.target_azimuth_rad
             yaw_rate = float(np.clip(desired_yaw_rate, -self.max_yaw_rate, self.max_yaw_rate))
 
-            # Optomotor lateral drift: steer laterally toward gap opening as well
-            vy = float(np.clip(gap_decision.target_azimuth_rad * 0.8, -0.6, 0.6))
+            # Optomotor lateral drift: steer laterally toward gap opening (right = -Y_body)
+            vy = -float(np.clip(gap_decision.target_azimuth_rad * 0.8, -0.6, 0.6))
 
         elif mode == FlightMode.EVASIVE_SACCADE:
             # All-or-none high-speed lateral escape
             sign = transition.saccade_direction_sign
             vx = 0.3 * self.nominal_cruise_speed  # preserve minimal forward momentum
-            vy = sign * self.max_saccade_speed    # intense lateral burst
+            # If threat is right (sign < 0), escape left (+Y_body)
+            vy = -sign * self.max_saccade_speed    # intense lateral burst
             vz_cmd = -0.5                          # slight climb during escape saccade
-            yaw_rate = sign * self.max_yaw_rate   # rapid heading whip away from hazard
+            yaw_rate = -sign * self.max_yaw_rate   # rapid heading whip away from hazard
+
 
         elif mode == FlightMode.BRAKING_HOVER:
             # Zero body velocity

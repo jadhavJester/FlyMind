@@ -49,8 +49,12 @@ def run_benchmark(num_seeds: int = 5, env_name: str = "forest") -> None:
     print("\n")
 
 
-def run_demo() -> None:
-    print("\nRunning single FlyMindBio demonstration flight episode...")
+import webbrowser
+from flymind.visualization.visualizer_3d import Visualizer3D
+
+
+def run_demo(open_3d: bool = False) -> None:
+    print("\nRunning single FlyMindBio demonstration flight episode in 3D plane...")
     runner = BenchmarkRunner(dt=0.02, max_episode_time_s=12.0)
     res = runner.run_episode(controller_type=ControllerType.FLYMIND_FULL, environment_name="forest", seed=42)
     print(f"Episode Completed:")
@@ -63,17 +67,29 @@ def run_demo() -> None:
     print(f"  Goal Reached:   {res.reached_goal}")
     print(f"  Collided:       {res.has_collided}")
     print(f"  Saccade Events: {res.saccade_count}")
-    print(f"  Step Latency:   {res.mean_computation_time_ms:.2f} ms\n")
+    print(f"  Step Latency:   {res.mean_computation_time_ms:.2f} ms")
+
+    # Export interactive 3D WebGL plane visualization
+    viz = Visualizer3D(res)
+    html_path = viz.export_interactive_html("flymind_flight_3d.html")
+    print(f"\n[3D Flight Plane] Exported interactive WebGL 3D visualization:")
+    print(f"  -> File: {html_path}")
+
+    if open_3d:
+        print(f"  -> Opening 3D plane in browser...")
+        webbrowser.open(f"file:///{html_path.replace('\\', '/')}")
+    print("\n")
 
 
 def main():
     parser = argparse.ArgumentParser(description="FlyMind: Insect-Inspired Flight Intelligence Research Platform")
-    parser.add_argument("--dashboard", action="store_true", help="Launch interactive Web Research Dashboard")
+    parser.add_argument("--dashboard", action="store_true", help="Launch interactive Web Research Dashboard with 3D Plane")
     parser.add_argument("--port", type=int, default=8090, help="Web dashboard port (default: 8090)")
     parser.add_argument("--benchmark", action="store_true", help="Run automated statistical benchmark suite")
     parser.add_argument("--seeds", type=int, default=5, help="Number of random seeds per scenario (default: 5)")
     parser.add_argument("--env", type=str, default="forest", choices=["forest", "gates", "looming"], help="Environment")
-    parser.add_argument("--demo", action="store_true", help="Run quick single demo episode")
+    parser.add_argument("--demo", action="store_true", help="Run quick single demo episode and export 3D plane")
+    parser.add_argument("--3d", dest="open_3d", action="store_true", help="Run episode and immediately open interactive 3D plane in browser")
 
     args = parser.parse_args()
 
@@ -94,9 +110,10 @@ def main():
         run_benchmark(num_seeds=args.seeds, env_name=args.env)
 
     else:
-        # Default action: run demo
-        run_demo()
+        # Default action: run demo with optional 3D browser popup
+        run_demo(open_3d=args.open_3d)
 
 
 if __name__ == "__main__":
     main()
+

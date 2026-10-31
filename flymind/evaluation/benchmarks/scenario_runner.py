@@ -241,8 +241,11 @@ class BenchmarkRunner:
                 step_time_ms=step_duration_ms,
                 is_saccading=is_saccade,
                 current_time_s=current_time,
+                yaw=quad.yaw,
             )
 
             current_time += self.dt
 
+        collector.obstacles = env.get_obstacles(0.0)
         return collector.compute_summary()
+
