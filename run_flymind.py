@@ -77,7 +77,8 @@ def run_demo(open_3d: bool = False) -> None:
 
     if open_3d:
         print(f"  -> Opening 3D plane in browser...")
-        webbrowser.open(f"file:///{html_path.replace('\\', '/')}")
+        clean_url = html_path.replace("\\", "/")
+        webbrowser.open(f"file:///{clean_url}")
     print("\n")
 
 

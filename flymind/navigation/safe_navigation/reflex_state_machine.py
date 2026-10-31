@@ -69,8 +69,8 @@ class ReflexStateMachine:
         self._state_timer += dt
         reason = "Normal flight"
 
-        # 1. Highest priority trigger: Giant Fiber spike or extreme critical risk -> EVASIVE_SACCADE
-        if (gf_spike or max_risk >= 0.88) and self.mode != FlightMode.EVASIVE_SACCADE:
+        # 1. Highest priority trigger: Giant Fiber spike or elevated collision risk -> EVASIVE_SACCADE
+        if (gf_spike or max_risk >= 0.60) and self.mode != FlightMode.EVASIVE_SACCADE:
             self.mode = FlightMode.EVASIVE_SACCADE
             self._state_timer = 0.0
             # Saccade away from threat centroid (contralateral bias)

@@ -126,7 +126,7 @@ class SyntheticCamera:
         for dist, obs in obs_with_dist:
             obs_type = obs.get("type", "cylinder")
             base_col = np.array(obs.get("color", (40, 40, 40)), dtype=np.float32)
-            col = tuple(np.clip(base_col * np.array(l_mult), 0, 255).astype(int))
+            col = tuple(int(x) for x in np.clip(base_col * np.array(l_mult), 0, 255))
 
             if obs_type == "cylinder":
                 # Cylindrical pillar: render vertical strip
@@ -171,7 +171,7 @@ class SyntheticCamera:
             elif obs_type == "sphere":
                 c_world = np.array(obs["center"], dtype=np.float64)
                 r = float(obs.get("radius", 0.30))
-                p_cam = self.world_to_camera(c_world, drone_pos, drone_euler)
+                p_cam = self.world_to_camera(c_world, drone_pos, euler)
 
                 if p_cam[2] <= self.min_dist or p_cam[2] > self.max_dist:
                     continue

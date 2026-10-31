@@ -602,10 +602,26 @@ class DashboardHandler(http.server.BaseHTTPRequestHandler):
                 "obstacles": result.obstacles,
             }
 
+            def _clean_json(val: Any) -> Any:
+                if isinstance(val, (np.integer, np.int64, np.int32, np.int16, np.int8)):
+                    return int(val)
+                elif isinstance(val, (np.floating, np.float64, np.float32, np.float16)):
+                    return float(val)
+                elif isinstance(val, np.ndarray):
+                    return [_clean_json(x) for x in val.tolist()]
+                elif isinstance(val, (np.bool_, bool)):
+                    return bool(val)
+                elif isinstance(val, dict):
+                    return {str(k): _clean_json(v) for k, v in val.items()}
+                elif isinstance(val, (list, tuple)):
+                    return [_clean_json(x) for x in val]
+                return val
+
+            clean_payload = _clean_json(payload)
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.end_headers()
-            self.wfile.write(json.dumps(payload).encode("utf-8"))
+            self.wfile.write(json.dumps(clean_payload).encode("utf-8"))
             return
 
         self.send_response(404)
