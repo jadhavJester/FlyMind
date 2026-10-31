@@ -1,0 +1,30 @@
+# FlyMind Bio-Inspired Perception & Neural Parameters
+
+elementary_motion_detector:
+  tau_filter_s: 0.020             # Time constant for HR-EMD delay-and-correlate (20 ms)
+  spatial_sampling_pixels: 4      # Downsampled lattice pitch matching Drosophila ommatidia
+  contrast_threshold: 0.02        # Sensitivity threshold for local motion
+
+lplc2_looming:
+  receptive_field_size_deg: 75.0  # Total angular width of 4-lobed cross RF
+  kernel_arm_width_fraction: 0.25 # Relative width of each cross lobe
+  spontaneous_threshold_l0: 0.05  # Spontaneous firing subtraction threshold
+  multiplicative_exponent: 1.0    # Degree of multiplicative gating
+
+giant_fiber:
+  membrane_tau_s: 0.015           # Giant Fiber membrane time constant (15 ms)
+  resting_potential_mv: -70.0     # Resting potential
+  threshold_potential_mv: -50.0   # Action potential spike threshold
+  reset_potential_mv: -75.0       # Post-spike hyperpolarization reset
+  refractory_period_s: 0.005      # Absolute refractory duration (5 ms)
+  invariant_size_threshold_deg: 34.0 # Biological invariant angular trigger threshold
+
+winner_take_all_gap:
+  num_sectors: 16                 # Number of angular azimuthal sectors across FOV
+  lateral_inhibition_weight: 1.5  # Strength of competition suppressing high-flow sectors
+  balance_gain_k: 0.8             # Bilateral lateral flow balancing gain for corridor centering
+
+relative_nearness:
+  divergence_filter_radius: 3     # Central-difference kernel window
+  min_valid_speed_mps: 0.2        # Speed below which divergence normalization is paused
+  ttc_warning_horizon_s: 1.2      # Time-to-contact warning threshold

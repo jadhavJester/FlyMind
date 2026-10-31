@@ -1,0 +1,28 @@
+# FlyMind Safety Supervisor Limits & Fail-Safe Envelopes
+
+operational_limits:
+  max_forward_speed_mps: 3.5      # Maximum permitted forward translation speed
+  max_lateral_speed_mps: 1.5      # Maximum lateral drifting speed
+  max_vertical_speed_mps: 1.5     # Maximum climb/sink speed
+  max_yaw_rate_degps: 90.0        # Maximum rotational yaw rate
+  max_pitch_roll_deg: 25.0        # Maximum allowable tilt angle
+  max_acceleration_mps2: 4.0      # Slew rate limit on translational acceleration
+  max_angular_accel_radps2: 6.0   # Slew rate limit on rotational acceleration
+
+geofence:
+  x_min_m: -9.0
+  x_max_m: 9.0
+  y_min_m: -9.0
+  y_max_m: 9.0
+  altitude_floor_m: 0.40          # Hard floor barrier to prevent ground collisions
+  altitude_ceiling_m: 3.50        # Hard ceiling barrier
+
+proximity_margins:
+  hard_collision_radius_m: 0.35   # Physical drone chassis radius
+  warning_clearance_m: 0.75       # Safe buffer distance triggering speed reduction
+  emergency_brake_clearance_m: 0.50 # Distance triggering emergency reverse/hover
+
+fail_safe:
+  watchdog_timeout_s: 0.20        # Maximum delay before neural signal loss triggers hover
+  emergency_hover_duration_s: 3.0 # Duration to maintain stabilized hover before landing
+  auto_land_sink_rate_mps: 0.35   # Controlled sink rate during autonomous landing

@@ -1,0 +1,32 @@
+# FlyMind 6-DoF Quadrotor Physical & Sensor Parameters
+quadrotor:
+  mass_kg: 0.85                   # Mass of vehicle in kilograms
+  arm_length_m: 0.17              # Center to motor axis distance
+  gravity_mps2: 9.81              # Standard gravitational acceleration
+  Ixx_kgm2: 0.0075                # Roll moment of inertia
+  Iyy_kgm2: 0.0075                # Pitch moment of inertia
+  Izz_kgm2: 0.0130                # Yaw moment of inertia
+  linear_drag_coeff: 0.08         # Aerodynamic bluff-body drag
+  angular_drag_coeff: 0.02        # Rotational aerodynamic damping
+  motor_torque_constant: 0.012    # Yaw torque per unit rotor thrust (km)
+  max_thrust_per_motor_n: 4.5     # Maximum thrust per motor (total thrust/weight ratio ~ 2.15)
+  min_thrust_per_motor_n: 0.1     # Minimum idle thrust
+
+camera:
+  resolution: [160, 120]          # Width, height in pixels (fast neuromorphic processing)
+  fov_horizontal_deg: 110.0       # Wide biological field of view
+  fov_vertical_deg: 85.0          # Vertical field of view
+  framerate_hz: 30.0              # Sensor acquisition frequency
+  max_render_distance_m: 15.0     # Rendering clipping plane
+  min_render_distance_m: 0.15     # Near clipping plane
+
+imu:
+  gyro_noise_density: 0.001       # rad/s / sqrt(Hz)
+  gyro_random_walk: 0.0001        # rad/s^2 / sqrt(Hz)
+  accel_noise_density: 0.01       # m/s^2 / sqrt(Hz)
+  accel_random_walk: 0.001        # m/s^3 / sqrt(Hz)
+  update_hz: 100.0                # High-rate IMU loop
+
+world:
+  arena_bounds: [-10.0, 10.0, -10.0, 10.0, 0.0, 4.0]  # [x_min, x_max, y_min, y_max, z_min, z_max] in meters
+  default_lighting: "day"         # "day", "overcast", "dim", "dark"

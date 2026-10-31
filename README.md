@@ -1,171 +1,200 @@
-# BioFlight: Data-Driven Bio-Inspired Flight Control Using FlyBody
+# FlyMind: Insect-Inspired Autonomous Flight Intelligence Research Platform
 
-[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
-[![MuJoCo](https://img.shields.io/badge/physics-MuJoCo%203.13-purple.svg)](https://mujoco.org/)
-[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](tests/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Tests: 20 Passing](https://img.shields.io/badge/tests-20%20passing-brightgreen.svg)](flymind/tests/)
+[![Architecture: Modular](https://img.shields.io/badge/architecture-modular-purple.svg)](docs/architecture.md)
+[![Safety Supervisor](https://img.shields.io/badge/safety-independent%20supervisor-red.svg)](flymind/safety/)
 
-An open-source, scientifically rigorous AI and robotics research framework investigating whether motion and control strategies learned from real biological fruit-fly (*Drosophila melanogaster*) locomotion—via imitation learning and reinforcement learning in **FlyBody**—can provide transferable principles for autonomous unmanned aerial vehicle (UAV) navigation and stabilization.
+**FlyMind** is a modular computational neuroscience and robotics research software platform investigating how fruit-fly (*Drosophila melanogaster*) visual motion processing, looming perception, and escape reflexes enable civilian Unmanned Aerial Vehicles (UAVs) to achieve agile, collision-free autonomous flight in cluttered and dynamic environments without heavy sensors.
 
 ---
 
-## 1. Research Pipeline
+## 1. Academic & Research Scope
+
+> **Civilian Research Notice**: FlyMind is designed strictly for civilian autonomous aerial robotics research (environmental monitoring, search-and-rescue navigation, indoor inspection, canopy traversal). It **does not** implement target tracking/interception, weapon guidance, pursuit behaviours, payload deployment, or evasion of defensive systems.
+
+### Core Scientific Questions:
+1. **Looming Detection without Active Depth**: How can wide-field radial motion detectors (LPLC2) trigger sub-10 ms collision avoidance before depth or distance can be explicitly estimated?
+2. **Ego-Motion Decoupling**: How does subtraction of 3-axis gyroscope rotational optical flow (derotation) isolate true translational looming obstacles during aggressive rotational flight maneuvers?
+3. **Gap Selection via Lateral Inhibition**: How do central-complex Winner-Take-All ring attractor networks extract traversable apertures through dense forest canopies and narrow slits?
+4. **Bio-Inspired vs Conventional Performance**: Does an insect-inspired visual pipeline achieve superior latency-to-compute ratios and collision margins compared to classical edge-density vision and learned monocular depth networks?
+
+---
+
+## 2. Theoretical & Mathematical Foundations
+
+FlyMind reproduces and unifies the mathematical models from four foundational research papers:
 
 ```mermaid
-flowchart TD
-    A[Real Drosophila Flight Data\nHHMI Janelia 5 kHz Saccades] --> B[Trajectory Analysis & Dynamics]
-    B --> C[Zero-Leakage Preprocessing\nStratified Splits & Normalization]
-    C --> D[Baseline Imitation Learning\nMLP Policy @ 107k Params]
-    D --> E[Closed-Loop FlyBody Simulation\nMuJoCo WBPG @ 5 kHz]
-    E --> F[Reinforcement Learning\nCustom Flight Stabilization Task]
-    F --> G[Vision-Guided Flight\nHierarchical Navigation]
-    G --> H[Bio-Inspired UAV Controller\nQuadrotor Dynamics Simulation]
+flowchart LR
+    A[Monocular Video Stream] --> B[Pyramidal Farnebäck Flow]
+    A --> C[2D HR-EMD Correlator Array]
+    IMU[3-Axis Gyroscope] --> D[Longuet-Higgins Derotator]
+    B & IMU --> D
+    D --> E[Flow Divergence Nearness Map\nPaper 4: Neurocomputing 2024]
+    C --> F[LPLC2 4-Lobed Cross-Kernel\nPaper 1: iScience 2023]
+    F --> G[Giant Fiber LIF Spiking Neuron]
+    E --> H[WTA Lateral Inhibition Gap Selector\nPaper 2: Nature Comms 2024]
+    G & H & E --> I[Reflex State Machine\nCruise / Gap / Saccade / Hover]
+    I --> J[Reactive 3D Velocity & Yaw Setpoints]
+    J --> K[Independent Safety Supervisor\nGeofence & Envelope Guard]
+    K --> L[6-DoF Quadrotor Dynamics]
 ```
 
+### Paper 1: Zhao et al., *iScience* 2023 (LPLC2 Multiplicative Integration)
+LPLC2 neurons receive inputs from 4 outward dendritic subfields $k \in \{\text{Right}, \text{Left}, \text{Up}, \text{Down}\}$. Local feedforward inhibition $L_0(\mathbf{x}, t) = \sum_{k=1}^4 L_k(\mathbf{x}, t)$ suppresses uniform background motion:
+$$I_{\text{LPLC2}}(t) = \prod_{k=1}^4 \max\left(0, \sum_{\mathbf{x}} [L_k(\mathbf{x}, t) - \alpha L_0(\mathbf{x}, t)]_+\right)$$
+A Leaky Integrate-and-Fire (LIF) Giant Fiber (GF) neuron integrates population activity $N_{\text{act}}(t)$, firing an all-or-none escape saccade at an invariant threshold angle $\theta \approx 34^\circ$.
+
+### Paper 2: Schoepe et al., *Nature Communications* 2024 (Winner-Take-All Gap Finding)
+Azimuthal sectors $m \in \{1, \dots, M\}$ accumulate obstacle motion energy. Lateral inhibition across the ring network sharpens openings:
+$$A_m = C_m - \beta \sum_{j \ne m} C_j \quad \text{where } C_m = \frac{1}{H_m + \epsilon}$$
+$$m^* = \arg\max_m A_m = \arg\min_m H_m$$
+
+### Paper 3: Zhao et al., 2024 (IMU Optical Flow Derotation)
+Rotational flow is subtracted analytically using gyroscope rates $\boldsymbol{\omega} = [\omega_x, \omega_y, \omega_z]^T$:
+$$\begin{pmatrix} u_{\text{rot}}(x, y) \\ v_{\text{rot}}(x, y) \end{pmatrix} = \begin{pmatrix} \frac{x y}{f} \omega_x - \left(f + \frac{x^2}{f}\right) \omega_y + y \omega_z \\ \left(f + \frac{y^2}{f}\right) \omega_x - \frac{x y}{f} \omega_y - x \omega_z \end{pmatrix}$$
+$$\mathbf{u}_{\text{trans}}(\mathbf{x}) = \mathbf{u}_{\text{total}}(\mathbf{x}) - \mathbf{u}_{\text{rot}}(\mathbf{x})$$
+
+### Paper 4: *Neurocomputing* 2024 (Flow Divergence Nearness Map)
+Under forward flight at velocity $v_z$, reciprocal distance (nearness) $\mu(\mathbf{x}) = 1/Z(\mathbf{x})$ is extracted directly from 2D spatial divergence:
+$$\nabla \cdot \mathbf{u}_{\text{trans}} = \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} \approx 2 v_z \hat{\mu}(\mathbf{x}) \implies \hat{\mu}(\mathbf{x}) = \frac{\nabla \cdot \mathbf{u}_{\text{trans}}}{2 v_z}$$
+
 ---
 
-## 2. Milestone Progress & Key Experimental Results
+## 3. Upstream Research Repository Integration
 
-### Milestone 3 — Drosophila Arithmetic Selector v0.1 (COMPLETED)
-Established the first complete embodied closed-loop task:
+FlyMind systematically studies, cross-validates, and integrates methods from 7 open-source projects:
 
-$$\text{TASK} \longrightarrow \text{DECISION} \longrightarrow \text{TARGET} \longrightarrow \text{FLIGHT} \longrightarrow \text{CONTACT} \longrightarrow \text{REWARD}$$
-
-* **Task**: $2 + 3 = ?$ with candidate answers Left $[5]$ and Right $[7]$ inside a $12\text{ cm} \times 12\text{ cm} \times 6\text{ cm}$ 3D arena.
-* **Separation of Layers**: Layer 1 (Task), Layer 2 (Decision), Layer 3 (Navigation Waypoint Adapter), Layer 4 (FlyBody MuJoCo Physics & WBPG).
-* **Baselines Evaluated**:
-  - **Baseline A (Oracle)**: Directly commands $[5]$. Reaches contact in $183$ steps ($36.6\text{ ms}$), min distance $0.1495\text{ cm} \le 0.150\text{ cm}$, reward $+8.18$ (`CORRECT_TARGET_CONTACT`).
-  - **Baseline B (Wrong Target)**: Explicitly commands $[7]$. Contacts distractor in $182$ steps ($36.4\text{ ms}$), min distance $0.1493\text{ cm}$, reward $-11.81$ (`WRONG_TARGET_CONTACT`).
-  - **Baseline C (Arithmetic Solver)**: Autonomous task solving ($2 + 3 = 5 \to \text{target\_left}$). Contacts $[5]$ in $190$ steps ($38.0\text{ ms}$), reward $+8.11$ (`CORRECT_TARGET_CONTACT`).
-* **Artifacts**: Multi-view telemetry video (`videos/milestone_03_arithmetic.mp4`), structured logs (`results/milestone_03/episode_logs.json`), and documentation (`docs/milestone_03.md`).
-
-### Closed-Loop Flight Tracking in Live MuJoCo Simulation (Phase 7)
-The trained neural flight policy (`MLPPolicy`) was evaluated in closed-loop against real fruit-fly evasion saccade trajectories in `flight_imitation`:
-
-| Metric | Result | Benchmark Description |
+| Upstream Repository | Authors / Venue | FlyMind Module & Contribution |
 |---|---|---|
-| **Survival / Stability** | **100%** | Zero crashes across full maneuver duration |
-| **Position RMSE** | **0.35 cm (3.5 mm)** | Tracking precision over high-speed evasions |
-| **Position MAE** | **0.26 cm (2.6 mm)** | Mean absolute position error |
-| **Velocity RMSE** | **0.29 m/s** | Target linear velocity matching |
-| **Roll (Bank) Error** | **73.6°** | Real fly executes extreme rapid rolls up to 180° |
-| **Control Effort** | **4.31** | Action energy $\frac{1}{T}\sum \|a_t\|^2$ |
-| **Action Smoothness** | **0.69** | Action difference variation $\frac{1}{T}\sum \|\Delta a_t\|^2$ |
+| [TuragaLab/flybody](https://github.com/TuragaLab/flybody) | Nature 2025 | Aerodynamic drag models, egocentric coordinate transformations |
+| [SpikeCalls/FlyDrones](https://github.com/SpikeCalls/FlyDrones) | Connectome Drone Pilot | Connectome-driven behavioral state machines, WebGL 3D arena |
+| [dylankainth/flybrain](https://github.com/dylankainth/flybrain) | FlyWire Eye Mapping | Retinotopic ommatidial tiling and receptive field layouts |
+| [alextitonis/fly.ai](https://github.com/alextitonis/fly.ai) | Crazyflie Drone Pilot | Reflex-to-velocity setpoint adaptation layer |
+| [zhaojunyu01/EMD-LPLC2-GF-model](https://github.com/zhaojunyu01/EMD-LPLC2-GF-model) | iScience 2023 | 4-lobed cross-kernel and Giant Fiber LIF implementation |
+| [tudelft/speck-optical-flow](https://github.com/tudelft/speck-optical-flow) | TU Delft / ICRA 2026 | Neuromorphic DVS event processing and flow accumulation |
+| [anish-bhattacharya/evfly](https://github.com/anish-bhattacharya/evfly) | CoRL 2024 | Cluttered Poisson cylinder forest simulation benchmarks |
 
 ---
 
-## 3. Project Directory Structure
+## 4. Platform Architecture
 
 ```text
-Fruit fly/
-├── configs/
-│   ├── dataset.yaml            # Preprocessing, normalization & split config
-│   └── imitation.yaml          # MLP architecture & training hyperparameters
-├── data/
-│   ├── raw/                    # Raw flight saccade HDF5 & wing pattern files
-│   ├── processed/              # Normalized train/val/test splits (.npz)
-│   └── README.md               # Figshare sources, metadata & dataset schemas
-├── docs/
-│   └── FLYBODY_ARCHITECTURE.md # MuJoCo model, WBPG, and kinematics reference
-├── notebooks/
-│   └── 01_dataset_exploration.ipynb # Interactive trajectory exploration
-├── src/
-│   ├── data/
-│   │   ├── flight_dataset.py   # Trajectory loader & kinematic analyzer
-│   │   ├── preprocessor.py     # Stratified zero-leakage preprocessor
-│   │   └── dataset.py          # PyTorch Dataset & DataLoader constructors
-│   ├── models/
-│   │   └── mlp_policy.py       # Neural flight policy network
-│   └── evaluation/
-│       └── metrics.py          # Flight tracking, attitude & stability metrics
-├── training/
-│   └── train_imitation.py      # Offline imitation learning training pipeline
-├── evaluation/
-│   └── run_evaluation.py       # Live closed-loop MuJoCo simulation evaluation
-├── tests/
-│   └── test_bioflight_core.py  # Unit tests (100% passing)
-├── checkpoints/
-│   └── imitation/exp_001/      # Saved PyTorch model checkpoints
-├── results/
-│   ├── dataset_analysis/       # 3D trajectory plots, distributions & reports
-│   ├── imitation/exp_001/      # Convergence curves, 3D tracking & metrics
-│   └── model_inspection/       # MuJoCo hierarchy tree & JSON summaries
-├── environment.yml             # Conda environment specification (Ubuntu Linux)
-├── requirements.txt            # Pip / uv cross-platform requirements
-└── README.md
+FlyMind/
+├── flymind/
+│   ├── config/              # Parameters (simulation, perception, safety envelopes)
+│   ├── simulation/          # 6-DoF RK4 Newton-Euler dynamics, sensors & arenas
+│   │   ├── quadrotor_6dof.py
+│   │   ├── sensors/         # Pinhole RGB+depth camera, noisy MEMS IMU
+│   │   ├── environments/    # ObstacleForest, NarrowGates, DynamicLooming
+│   │   └── gazebo/          # ROS 2 Humble & MAVLink message bridge schemas
+│   ├── perception/          # Visual motion & depth-free estimation
+│   │   ├── optical_flow/    # Farnebäck dense & pyramidal Lucas-Kanade
+│   │   ├── elementary_motion_detection/ # Vectorized 2D HR-EMD
+│   │   ├── looming_detection/           # Angular expansion, TTC, IMU derotation
+│   │   ├── nearness_estimation/         # Spatial flow divergence
+│   │   └── event_vision/                # Neuromorphic DVS event emulator
+│   ├── bioinspired/         # Neural circuits & escape dynamics
+│   │   ├── lplc2/           # 4-lobed cross-kernel & population coding sheet
+│   │   ├── neural_models/   # Giant Fiber LIF spiking neuron
+│   │   └── motion_detectors/# Winner-Take-All lateral inhibition gap selector
+│   ├── navigation/          # Behavior & guidance
+│   │   ├── obstacle_awareness/  # Spatial risk mapping & TTC fusion
+│   │   └── safe_navigation/     # Reflex state machine & reactive setpoints
+│   ├── safety/              # Independent supervisory authority
+│   │   ├── safety_supervisor/   # Geofence, speed clamping & watchdog monitor
+│   │   └── emergency_states/    # Fail-safe hover, auto-land, disarm
+│   ├── baselines/           # Classical & ML comparative baselines
+│   │   ├── opencv_edge_detector.py # Canny edge density steerer
+│   │   └── monocular_depth_net.py  # Lightweight CNN depth estimator
+│   ├── evaluation/          # Benchmarking & reporting
+│   │   ├── benchmarks/      # Multi-seed scenario runner
+│   │   ├── metrics/         # Clearance, path length, latency, collision rates
+│   │   └── reports/         # Statistical table and CSV generator
+│   ├── visualization/       # Telemetry HUD and Web Research Dashboard
+│   │   ├── telemetry_hud.py # OpenCV video overlay
+│   │   └── web_dashboard.py # Real-time dark-mode browser console
+│   └── tests/               # Pytest verification suite (20/20 passing)
+├── docs/                    # Architecture, literature review, reproduction plans
+└── run_flymind.py           # Main CLI launcher
 ```
 
 ---
 
-## 4. Quickstart Guide
+## 5. Quickstart Guide
 
-### Installation
+### 1. Installation
+FlyMind runs natively on Windows, Linux, and macOS:
+
 ```bash
-# Clone and setup virtual environment with Python 3.10
-uv venv .venv --python 3.10
-source .venv/bin/activate  # Or .venv\Scripts\activate on Windows
-
-# Install dependencies and local editable packages
-uv pip install -r requirements.txt
-uv pip install torch --index-url https://download.pytorch.org/whl/cpu
+git clone https://github.com/jadhavJester/FlyMind.git
+cd FlyMind
+pip install -r requirements.txt
 ```
 
-### Running Verification & Tests
+### 2. Run Test Suite
+Verify all 20 modules pass unit tests:
+
 ```bash
-# Real-Time Interactive Web Control Center (Live 3D Stream + Task Switcher)
-python scripts/run_web_control_center.py
-# Open browser at: http://localhost:8080
-
-# Native Desktop 3D Interactive Window (GLFW Viewer)
-python scripts/view_live_simulation.py --mode arithmetic
-python scripts/view_live_simulation.py --mode spelling --word UDIT
-
-# FlyDrones: 3D Connectome Drone Web Simulator (WebGL Three.js)
-python scripts/run_flydrones_web.py
-# Open browser at: http://localhost:8088
-
-# FlyDrones CLI: inspect connectome circuits, demo flight, and swarm
-python -m flydrones inspect
-python -m flydrones demo --seconds 5
-python -m flydrones swarm --seconds 10
-
-# Milestone 1: Verify official FlyBody simulation in MuJoCo physics
-python scripts/run_milestone_01.py --gui
-
-# Milestone 2: Fully inspect observation/action interfaces & perturbation dynamics
-python scripts/inspect_flybody_interface.py
-
-# Milestone 3: Run Drosophila Arithmetic Selector v0.1 (Baselines A, B, C)
-python scripts/run_milestone_03.py
-
-# System and dependency check
-python scripts/test_installation.py
-
-# Run comprehensive test suite
-pytest tests/
+pytest flymind/tests/ -v
 ```
 
-### Reproducing the Pipeline
+### 3. Launch Interactive Web Research Dashboard
+Start the dark-mode browser console:
+
 ```bash
-# 1. Inspect MuJoCo model hierarchy
-python scripts/inspect_model.py
+python run_flymind.py --dashboard --port 8090
+```
+Open your browser at `http://localhost:8090/` to test single episodes, observe live trajectory visualisations, and view neural potential gauges in real time.
 
-# 2. Analyze biological trajectory dataset
-python scripts/analyze_trajectories.py
+### 4. Run Multi-Seed Benchmarks
+Compare all 5 controllers across 5 random seeds in the cluttered forest:
 
-# 3. Preprocess dataset (zero temporal leakage split)
-python scripts/process_dataset.py
+```bash
+python run_flymind.py --benchmark --seeds 5 --env forest
+```
 
-# 4. Train baseline imitation learning policy
-python training/train_imitation.py
+### 5. Run Single Demo Episode
+Execute a standalone simulation run in terminal:
 
-# 5. Run closed-loop MuJoCo flight evaluation
-python evaluation/run_evaluation.py
+```bash
+python run_flymind.py --demo
 ```
 
 ---
 
-## 5. References & Citations
-- **FlyBody**: Roman Vaxenburg et al., *"Whole-body physics simulation of fruit fly locomotion"*, **Nature** 643, 1312–1320 (2025). [doi:10.1038/s41586-025-09029-4](https://doi.org/10.1038/s41586-025-09029-4).
-- **Drosophila Flight Saccades**: Florian T. Muijres et al., *"Flies Evade Looming Targets by Executing Rapid Visually Directed Banked Turns"*, **Science** 344, 172-177 (2014).
-- **Body Saccades Dynamics**: Florian T. Muijres et al., *"Body saccades of Drosophila consist of stereotyped banked turns"*, **J Exp Biol** 218, 864-875 (2015).
+## 6. Verification & Benchmark Results
+
+The 5 navigation controllers evaluated in FlyMind across 3 standardized challenge environments:
+1. **FlyMindBio (Full)**: Unified HR-EMD + LPLC2 + Giant Fiber + WTA Gap + IMU Derotation + Safety Supervisor
+2. **LPLC2-GF Only**: Pure looming escape reflex without lateral gap guidance
+3. **WTA Flow Gap Only**: Pure aperture steering without escape reflexes
+4. **Canny Edge Baseline**: Classical edge concentration avoidance
+5. **Monocular DepthNet Baseline**: 3-layer convolutional depth clearance network
+
+### Benchmark Summary (Cluttered Poisson Cylinder Forest, 5 Seeds):
+| Controller | Latency (ms) | Saccades | Escape Mechanism | Active Sensor Requirements |
+|---|:---:|:---:|:---:|:---:|
+| **FlyMindBio (Full)** | **~31 ms** | **Active** | Contralateral Bio-Saccade | **None** (Monocular RGB + Gyro) |
+| **LPLC2-GF Only** | ~22 ms | Active | Emergency Brake / Turn | None (Monocular RGB) |
+| **WTA Flow Gap Only** | ~18 ms | None | Continuous Optomotor Gap | None (Monocular RGB) |
+| **Canny Edge Baseline** | ~8 ms | None | Reactive Steer Away | None (Monocular RGB) |
+| **DepthNet Baseline** | ~45 ms | None | Neural Depth Estimation | None (Monocular RGB) |
+
+---
+
+## 7. License & Citation
+
+Distributed under the MIT License. See `LICENSE` for details.
+
+```bibtex
+@software{flymind2026,
+  author = {Jadhav, Udit and Collaborators},
+  title = {FlyMind: Insect-Inspired Autonomous Flight Intelligence Research Platform},
+  year = {2026},
+  publisher = {GitHub},
+  url = {https://github.com/jadhavJester/FlyMind}
+}
+```
