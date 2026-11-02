@@ -72,6 +72,10 @@ class Quadrotor6DoF:
         return float(self.state[8])
 
     @property
+    def euler(self) -> np.ndarray:
+        return self.state[6:9]
+
+    @property
     def omega(self) -> np.ndarray:
         return self.state[9:12]
 

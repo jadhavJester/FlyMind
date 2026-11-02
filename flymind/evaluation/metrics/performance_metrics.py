@@ -22,6 +22,7 @@ class FlightEpisodeMetrics:
     reached_goal: bool
     saccade_count: int
     mean_computation_time_ms: float
+    lighting: str = "day"
     time_to_first_reaction_s: Optional[float] = None
     trajectory_3d: List[List[float]] = field(default_factory=list)  # [[x, y, z, yaw], ...]
     obstacles: List[dict] = field(default_factory=list)
@@ -31,10 +32,11 @@ class MetricsCollector:
     """
     Accumulates timestep telemetry and computes comprehensive flight summary metrics.
     """
-    def __init__(self, controller_name: str, scenario_name: str, seed: int):
+    def __init__(self, controller_name: str, scenario_name: str, seed: int, lighting: str = "day"):
         self.controller_name = controller_name
         self.scenario_name = scenario_name
         self.seed = seed
+        self.lighting = lighting
 
         self.positions: List[np.ndarray] = []
         self.trajectory_3d: List[List[float]] = []
@@ -107,6 +109,7 @@ class MetricsCollector:
             reached_goal=self.reached_goal,
             saccade_count=self.saccade_events,
             mean_computation_time_ms=mean_comp,
+            lighting=self.lighting,
             time_to_first_reaction_s=self.first_reaction_time,
             trajectory_3d=self.trajectory_3d,
             obstacles=self.obstacles,

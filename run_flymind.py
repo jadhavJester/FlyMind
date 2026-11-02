@@ -17,12 +17,13 @@ from flymind.evaluation.reports.result_compiler import ResultCompiler
 from flymind.visualization.web_dashboard import start_dashboard
 
 
-def run_benchmark(num_seeds: int = 5, env_name: str = "forest") -> None:
+def run_benchmark(num_seeds: int = 5, env_name: str = "forest", lighting: str = "day") -> None:
+    lighting_modes = ["day", "overcast", "dim", "dark"] if lighting == "sweep" else [lighting]
     print(f"\n=======================================================")
-    print(f" FLYMIND BENCHMARK HARNESS: {num_seeds} SEEDS IN '{env_name.upper()}'")
+    print(f" FLYMIND BENCHMARK HARNESS: {num_seeds} SEEDS IN '{env_name.upper()}' (LIGHTING: {lighting.upper()})")
     print(f"=======================================================\n")
 
-    runner = BenchmarkRunner(dt=0.02, max_episode_time_s=10.0)
+    runner = BenchmarkRunner(dt=0.02, max_episode_time_s=16.0)
     all_results = []
 
     controllers = [
@@ -33,13 +34,15 @@ def run_benchmark(num_seeds: int = 5, env_name: str = "forest") -> None:
         ControllerType.DEPTHNET_BASELINE,
     ]
 
-    for ctrl in controllers:
-        print(f"--> Evaluating Controller: {ctrl.value} ...", flush=True)
-        for s in range(num_seeds):
-            res = runner.run_episode(controller_type=ctrl, environment_name=env_name, seed=42 + s)
-            all_results.append(res)
-            print(".", end="", flush=True)
-        print(" Done.")
+    for lit in lighting_modes:
+        print(f"\n--- Lighting Condition: [{lit.upper()}] ---")
+        for ctrl in controllers:
+            print(f"--> Evaluating Controller: {ctrl.value} ...", flush=True)
+            for s in range(num_seeds):
+                res = runner.run_episode(controller_type=ctrl, environment_name=env_name, seed=42 + s, lighting=lit)
+                all_results.append(res)
+                print(".", end="", flush=True)
+            print(" Done.")
 
     compiler = ResultCompiler(all_results)
     table_md = compiler.compile_summary_table()
@@ -47,6 +50,11 @@ def run_benchmark(num_seeds: int = 5, env_name: str = "forest") -> None:
     print("\nBenchmark Summary Results:\n")
     print(table_md)
     print("\n")
+
+    if len(lighting_modes) > 1:
+        print("Lighting Robustness Degradation Table:\n")
+        print(compiler.compile_lighting_table())
+        print("\n")
 
 
 import webbrowser
@@ -89,6 +97,7 @@ def main():
     parser.add_argument("--benchmark", action="store_true", help="Run automated statistical benchmark suite")
     parser.add_argument("--seeds", type=int, default=5, help="Number of random seeds per scenario (default: 5)")
     parser.add_argument("--env", type=str, default="forest", choices=["forest", "gates", "looming"], help="Environment")
+    parser.add_argument("--lighting", type=str, default="day", choices=["day", "overcast", "dim", "dark", "sweep"], help="Lighting condition or 'sweep' (default: day)")
     parser.add_argument("--demo", action="store_true", help="Run quick single demo episode and export 3D plane")
     parser.add_argument("--3d", dest="open_3d", action="store_true", help="Run episode and immediately open interactive 3D plane in browser")
 
@@ -108,7 +117,7 @@ def main():
             server.shutdown()
 
     elif args.benchmark:
-        run_benchmark(num_seeds=args.seeds, env_name=args.env)
+        run_benchmark(num_seeds=args.seeds, env_name=args.env, lighting=args.lighting)
 
     else:
         # Default action: run demo with optional 3D browser popup

@@ -55,6 +55,7 @@ class BenchmarkRunner:
         controller_type: ControllerType,
         environment_name: str = "forest",
         seed: int = 42,
+        lighting: str = "day",
     ) -> FlightEpisodeMetrics:
         """
         Run a single flight episode.
@@ -64,6 +65,7 @@ class BenchmarkRunner:
             controller_name=controller_type.value,
             scenario_name=environment_name,
             seed=seed,
+            lighting=lighting,
         )
 
         # 1. Instantiate environment
@@ -112,7 +114,7 @@ class BenchmarkRunner:
 
             # Render camera frame from environment
             obstacles = env.get_obstacles(current_time)
-            img, depth = cam.render(quad.pos, quad.yaw, obstacles)
+            img, depth = cam.render(quad.pos, quad.euler, obstacles, lighting=lighting)
 
             # Get IMU measurement
             omega_meas, accel_meas = imu.measure(quad.omega, quad.rot_mat @ np.array([0.0, 0.0, -9.81]))
