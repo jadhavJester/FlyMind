@@ -13,6 +13,7 @@ from ...simulation.sensors.noisy_imu import NoisyIMU
 from ...simulation.environments.obstacle_forest import ObstacleForest
 from ...simulation.environments.narrow_gates import NarrowGatesCorridor
 from ...simulation.environments.dynamic_looming import DynamicLoomingArena
+from ...simulation.environments.moving_target_track import MovingTargetTrack
 
 from ...perception.optical_flow.farneback_dense import FarnebackDenseFlow
 from ...perception.elementary_motion_detection.hr_emd import HRElementaryMotionDetector
@@ -81,6 +82,10 @@ class BenchmarkRunner:
             env = DynamicLoomingArena(approach_speed=2.5, initial_distance=15.0)
             init_pos = np.array([0.0, 0.0, 1.5], dtype=np.float32)
             goal_x = 18.0
+        elif environment_name in ("track", "moving_target"):
+            env = MovingTargetTrack(track_length_m=12.0, target_mode="crossing", target_speed=1.5)
+            init_pos = np.array([0.0, 0.0, 1.5], dtype=np.float32)
+            goal_x = 10.5
         else:
             raise ValueError(f"Unknown environment: {environment_name}")
 

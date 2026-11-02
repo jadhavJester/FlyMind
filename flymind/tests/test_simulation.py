@@ -57,3 +57,14 @@ def test_environments_clearance():
     looming = DynamicLoomingArena(approach_speed=2.0)
     obs = looming.get_obstacles(0.0)
     assert len(obs) >= 1
+
+    from flymind.simulation.environments.moving_target_track import MovingTargetTrack
+    track = MovingTargetTrack(track_length_m=12.0, target_speed=1.5)
+    track_obs = track.get_obstacles(0.0)
+    assert len(track_obs) > 5  # Has pylons and moving target
+    init_clearance = track.check_clearance(np.array([0.0, 0.0, 1.5]))
+    assert init_clearance > 0.5
+    # Step environment time
+    track_obs_t1 = track.get_obstacles(1.0)
+    target_pos = track.target.current_pos
+    assert target_pos[0] > 0.0  # target exists along track

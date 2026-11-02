@@ -96,7 +96,7 @@ def main():
     parser.add_argument("--port", type=int, default=8090, help="Web dashboard port (default: 8090)")
     parser.add_argument("--benchmark", action="store_true", help="Run automated statistical benchmark suite")
     parser.add_argument("--seeds", type=int, default=5, help="Number of random seeds per scenario (default: 5)")
-    parser.add_argument("--env", type=str, default="forest", choices=["forest", "gates", "looming"], help="Environment")
+    parser.add_argument("--env", type=str, default="forest", choices=["forest", "gates", "looming", "track"], help="Environment")
     parser.add_argument("--lighting", type=str, default="day", choices=["day", "overcast", "dim", "dark", "sweep"], help="Lighting condition or 'sweep' (default: day)")
     parser.add_argument("--demo", action="store_true", help="Run quick single demo episode and export 3D plane")
     parser.add_argument("--3d", dest="open_3d", action="store_true", help="Run episode and immediately open interactive 3D plane in browser")

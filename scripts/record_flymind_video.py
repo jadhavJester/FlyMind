@@ -23,6 +23,7 @@ from flymind.simulation.sensors.noisy_imu import NoisyIMU
 from flymind.simulation.environments.obstacle_forest import ObstacleForest
 from flymind.simulation.environments.dynamic_looming import DynamicLoomingArena
 from flymind.simulation.environments.narrow_gates import NarrowGatesCorridor
+from flymind.simulation.environments.moving_target_track import MovingTargetTrack
 
 from flymind.perception.optical_flow.farneback_dense import FarnebackDenseFlow
 from flymind.perception.elementary_motion_detection.hr_emd import HRElementaryMotionDetector
@@ -184,6 +185,10 @@ def record_cinematic_flight(scenario_name: str = "forest", max_seconds: float = 
         env = DynamicLoomingArena(approach_speed=2.5, initial_distance=15.0)
         init_pos = np.array([0.0, 0.0, 1.5], dtype=np.float32)
         goal_x = 18.0
+    elif scenario_name in ("track", "moving_target"):
+        env = MovingTargetTrack(track_length_m=12.0, target_mode="crossing", target_speed=1.5)
+        init_pos = np.array([0.0, 0.0, 1.5], dtype=np.float32)
+        goal_x = 11.0
     else:
         raise ValueError(f"Unknown environment: {scenario_name}")
 
